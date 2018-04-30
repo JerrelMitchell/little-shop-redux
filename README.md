@@ -2,6 +2,8 @@
 layout: page
 ---
 
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/JerrelMitchell/little-shop-redux.svg?columns=all)](https://waffle.io/JerrelMitchell/little-shop-redux)
+
 # Little Shop Redux
 
 ## Abstract
@@ -45,9 +47,9 @@ In this project you'll use Ruby, Sinatra, and ActiveRecord to build a site that 
 
 ### Clone the Project
 
-1. One team member forks this skeleton repository.
-1. Add the other team members as collaborators.
-1. Add instructors as collaborators.
+1.  One team member forks this skeleton repository.
+1.  Add the other team members as collaborators.
+1.  Add instructors as collaborators.
 
 ### Requirements
 
@@ -75,15 +77,15 @@ The project may not use:
 
 ## Usability
 
-- [ ] The application has been styled.
-- [ ] The application uses a balanced, considered color scheme.
-- [ ] The application implements a font (that is not the default font).
-- [ ] The application utilizes a nav bar.
-- [ ] The style shows evidence of intentional layout.
-- [ ] Space and text is balanced. White space is used to visually separate content.
-- [ ] The application is easily usable. The user can intuitively navigate between different portions of the application without manually entering the URL or using the back button on their browser.
-- [ ] The application is minimally responsive.
-- [ ] The application follows the design laid out in [these wireframes](https://github.com/turingschool/backend-curriculum-site/blob/gh-pages/module2/projects/Little%20Shop%20WireFrames.pdf).
+* [ ] The application has been styled.
+* [ ] The application uses a balanced, considered color scheme.
+* [ ] The application implements a font (that is not the default font).
+* [ ] The application utilizes a nav bar.
+* [ ] The style shows evidence of intentional layout.
+* [ ] Space and text is balanced. White space is used to visually separate content.
+* [ ] The application is easily usable. The user can intuitively navigate between different portions of the application without manually entering the URL or using the back button on their browser.
+* [ ] The application is minimally responsive.
+* [ ] The application follows the design laid out in [these wireframes](https://github.com/turingschool/backend-curriculum-site/blob/gh-pages/module2/projects/Little%20Shop%20WireFrames.pdf).
 
 ## Instructions
 
@@ -129,15 +131,15 @@ You can use ActiveRecord's [validations feature](http://guides.rubyonrails.org/a
 
 At the end of this iteration, you should be able to:
 
-- [ ] view an index of all items
-- [ ] view a page for a single item
-- [ ] create an item
-- [ ] edit an item
-- [ ] delete an item from both the index and the show pages.
+* [ ] view an index of all items
+* [ ] view a page for a single item
+* [ ] create an item
+* [ ] edit an item
+* [ ] delete an item from both the index and the show pages.
 
-- When creating an item, there should be a dropdown of all merchants to select from.
-- You will want to utilize a default image for seeded data.
-- An image should be a string referencing a url to a photo.
+* When creating an item, there should be a dropdown of all merchants to select from.
+* You will want to utilize a default image for seeded data.
+* An image should be a string referencing a url to a photo.
 
 ### Iteration 4 - Seed Items
 
