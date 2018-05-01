@@ -12,7 +12,7 @@ Jerrel
 
 Jude:
 John:
-Jerrel:
+Jerrel: test it out
 
 ## What is your collaboration style? How do you feel about pair programming vs. divide-and-conquer approaches?
 
