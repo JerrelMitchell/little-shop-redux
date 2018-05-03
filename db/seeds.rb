@@ -7,3 +7,11 @@ merchants.each do |merchant|
                   created_at: merchant[:created_at],
                   updated_at: merchant[:updated_at])
 end
+
+invoices.each do |invoice|
+  Invoice.create(id:          invoice[:id],
+                 merchant_id: invoice[:merchant_id],
+                 status:      invoice[:status],
+                 created_at:  invoice[:created_at],
+                 updated_at:  invoice[:updated_at])
+end
