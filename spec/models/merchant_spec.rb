@@ -43,17 +43,22 @@ RSpec.describe Merchant do
 
     describe '.update' do
       it 'should update attributes of merchant object with given id' do
+        name1 = 'Ye Olde Shoppe'
         name2 = 'Ye Newere Shoppe'
+        merchant1 = Merchant.find(1)
+        expect(merchant1.name).to eq(name1)
 
         Merchant.update(1, name: name2)
+        merchant2 = Merchant.find(1)
 
-        expect(Merchant.find_by(name: name2).name).to eq(name2)
+        expect(merchant2.name).to eq(name2)
       end
     end
 
     describe '.delete' do
       it 'should delete merchant object with given id' do
-        Merchant.delete(2)
+        merchant = Merchant.find(2)
+        Merchant.delete(merchant)
 
         expect { Merchant.find(2) }.to raise_error(ActiveRecord::RecordNotFound, "Couldn't find Merchant with 'id'=2")
       end
