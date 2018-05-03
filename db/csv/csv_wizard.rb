@@ -1,5 +1,6 @@
 require 'csv'
 
+# handles reading of csv files for database seeds
 class CSVWizard
   def self.read_file(filename)
     CSV.open(filename,
