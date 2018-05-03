@@ -1,5 +1,6 @@
 require './db/csv/csv_wizard'
 require './app/models/merchant.rb'
+require './app/models/invoices.rb'
 merchants = CSVWizard.read_file('./data/merchants.csv')
 merchants.each do |merchant|
   Merchant.create(id:         merchant[:id],
@@ -8,6 +9,7 @@ merchants.each do |merchant|
                   updated_at: merchant[:updated_at])
 end
 
+invoices = CSVWizard.read_file('./data/invoices.csv')
 invoices.each do |invoice|
   Invoice.create(id:          invoice[:id],
                  merchant_id: invoice[:merchant_id],
