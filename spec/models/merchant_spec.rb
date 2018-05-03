@@ -11,7 +11,7 @@ RSpec.describe Merchant do
 
   describe 'Merchants exhibit CRUD functionality' do
     describe '.all' do
-      it 'should return all merchants in database'
+      it 'should return all merchants in database' do
       merchant1 = Merchant.create(name: 'Example Shoppe')
       merchant2 = Merchant.create(name: 'Ye Olde Shoppe')
       merchants = [merchant1, merchant2]
