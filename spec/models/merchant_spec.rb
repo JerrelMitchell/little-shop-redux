@@ -9,46 +9,54 @@ RSpec.describe Merchant do
     end
   end
 
+  before(:each) do
+    @merchant1 = Merchant.create(id: 1, name: 'Ye Olde Shoppe')
+    @merchant2 = Merchant.create(id: 2, name: 'Example Shop')
+  end
+
+  describe 'Merchants have attributes' do
+    describe '.id' do
+      it 'should return id of given merchant' do
+        expect(Merchant.first.id).to eq(1)
+      end
+    end
+
+    describe '.name' do
+      it 'should return name of given merchant' do
+        expect(Merchant.first.name).to eq('Ye Olde Shoppe')
+      end
+    end
+  end
+
   describe 'Merchants exhibit CRUD functionality' do
     describe '.all' do
       it 'should return all merchants in database' do
-        Merchant.create(id: 1, name: 'Example Shoppe')
-        Merchant.create(id: 2, name: 'Ye Olde Shoppe')
-
         expect(Merchant.all.size).to eq(2)
       end
     end
 
     describe '.find' do
       it 'should return merchant with given id' do
-        Merchant.create(id: 1, name: 'Example Shoppe')
-        Merchant.create(id: 2, name: 'Ye Olde Shoppe')
-
-        expect(Merchant.find_by(name: 'Example Shoppe').name).to eq('Example Shoppe')
+        expect(Merchant.find(1).name).to eq('Ye Olde Shoppe')
       end
     end
 
-    # describe '.update' do
-    #   it 'should update attributes of merchant object with given id' do
-    #     Merchant.create(id: 1, name: 'Example Shoppe')
-    #     Merchant.create(id: 2, name: 'Ye Olde Shoppe')
-    #
-    #     Merchant.update(2, name: 'Ye Newere Shoppe')
-    #     Merchant.save
-    #
-    #     expect(Merchant.find_by(name: 'Ye Newere Shoppe').name).to eq('Ye Newere Shoppe')
-    #   end
-    # end
-    #
-    # describe '.delete' do
-    #   it 'should delete merchant object with given id' do
-    #     Merchant.create(id: 1, name: 'Example Shoppe')
-    #     Merchant.create(id: 2, name: 'Ye Olde Shoppe')
-    #
-    #     Merchant.delete(2)
-    #
-    #     expect(Merchant.find(2)).to eq(nil)
-    #   end
-    # end
+    describe '.update' do
+      it 'should update attributes of merchant object with given id' do
+        name2 = 'Ye Newere Shoppe'
+
+        Merchant.update(1, name: name2)
+
+        expect(Merchant.find_by(name: name2).name).to eq(name2)
+      end
+    end
+
+    describe '.delete' do
+      it 'should delete merchant object with given id' do
+        Merchant.delete(2)
+
+        expect { Merchant.find(2) }.to raise_error(ActiveRecord::RecordNotFound, "Couldn't find Merchant with 'id'=2")
+      end
+    end
   end
 end
