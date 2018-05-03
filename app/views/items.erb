@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+<%= all_items.each do |item| %>
+  <ul id=item.id>
+    <li>item.title</li>
+    <li>item.price</li>
+    <li>item.description</li>
+    <li><img src=item.image /></li>
+  </ul>
+<% end %>
+</body>
+</html>
