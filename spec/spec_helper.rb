@@ -6,6 +6,9 @@ require File.expand_path("../../config/environment.rb", __FILE__)
 # require 'rspec'
 require 'capybara/dsl'
 
+Capybara.app = LittleShopApp
+Capybara.save_path = 'tmp'
+
 DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |c|

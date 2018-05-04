@@ -10,4 +10,4 @@ I just wanted to take some notes along the way as this workflow is full of cavea
 1. Run migrations using AR's DSL `rake db:migrate`.
 
 ##
-1. Add seeds to seeds.rb and seed the databse `rake db:seed`
+1. Add seeds to seeds.rb and seed the database `rake db:seed`

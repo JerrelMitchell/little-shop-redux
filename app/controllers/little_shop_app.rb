@@ -1,6 +1,7 @@
-
 class LittleShopApp < Sinatra::Base
   get '/items' do
-    erb :items, locals: { all_items: Item.all }
+    @all_items = Item.all
+    # require 'pry';binding.pry
+    erb :items
   end
 end
