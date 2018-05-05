@@ -1,23 +1,23 @@
 RSpec.describe 'Visitors' do
   context 'when visiting /merchants/id/edit as an anonymous user' do
-    it 'should see input area and button to update merchant' do
-      merchant_name = 'Ye Olde Shoppe'
-      Merchant.create(id: 1, name: merchant_name)
+    it 'should see merchant name, input area, and button to update merchant' do
+      name = 'Ye Olde Shoppe'
+      Merchant.create(id: 1, name: name)
 
       visit('/merchants/1/edit')
-      # find that delete button exists
       # find that input field exists
+      # find that delete button exists
 
       expect(status_code).to eq(200)
-      expect(page).to have_content(merchant_name)
+      expect(page).to have_content(name)
     end
   end
 
-  context 'when updating a merchant at as an anonymous user' do
+  context 'when updating a merchant as an anonymous user' do
     it 'should see updated merchants list after updating merchant' do
-      merchant_name = 'Ye Olde Shoppe'
+      name          = 'Ye Olde Shoppe'
       updated_name  = 'Ye Newere Shoppe'
-      Merchant.create(id: 1, name: merchant_name)
+      Merchant.create(id: 1, name: name)
 
       visit('/merchants/1/edit')
       # input text to input field here
