@@ -60,7 +60,8 @@ RSpec.describe Merchant do
         merchant = Merchant.find(2)
         Merchant.delete(merchant)
 
-        expect { Merchant.find(2) }.to raise_error(ActiveRecord::RecordNotFound, "Couldn't find Merchant with 'id'=2")
+        expect { Merchant.find(2) }.to raise_error(ActiveRecord::RecordNotFound,
+                                                   "Couldn't find Merchant with 'id'=2")
       end
     end
   end
