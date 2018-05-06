@@ -79,8 +79,9 @@ RSpec.describe 'Items Pages' do
       visit '/item/1'
       price = Item.format_price(@first_item_attrs[:price])
 
+      save_and_open_page
       within('.item-information') do
-        expect(page).to have_content(Item.format_price(price))
+        expect(page).to have_content(price)
       end
     end
 

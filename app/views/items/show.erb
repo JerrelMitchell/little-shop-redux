@@ -1,0 +1,30 @@
+<html>
+<head></head>
+<body>
+  <header>
+    <span class="app-name">Little Shop</span>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item">Merchants</li>
+        <li class="nav-item">Items</li>
+        <li class="nav-item">Invoices</li>
+      </ul>
+    </nav>
+  </header>
+  <section class="item-metainfo">
+    <h1><%= @item.title %></h1>
+    <button id="edit-item">Edit</button>
+    <button id="delete-item">Delete</button>
+  </section>
+  <section class="item-information-container">
+    <div class="item-merchant-and-image">
+      <a href="#needs_to_be_a_merchant"><%= @item.merchant[:name] %></a>
+    </div>
+    <div class="item-information">
+      <h3 class="title"><%= @item.title %></h3>
+      <span class="price"><%= Item.format_price(@item.price) %></span>
+      <span class="description"><%= @item.description %></span>
+    </div>
+  </section>
+</body>
+</html>

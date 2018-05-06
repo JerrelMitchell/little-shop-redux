@@ -6,7 +6,7 @@
 <% @all_items.each do |item| %>
   <ul id="item-<%= item.id %>">
     <li><%= item.title %></li>
-    <li><%= item.price %></li>
+    <li><%= Item.format_price(item.price) %></li>
     <li><%= item.description %></li>
     <li><img src="<%= item.image %>" /></li>
   </ul>
