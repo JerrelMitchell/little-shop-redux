@@ -27,10 +27,19 @@ RSpec.describe Item do
   describe 'Class Methods' do
     describe '.all' do
       it 'should have all items accounted for' do
-        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
         Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '800_000', image: '/imgs/shirt')
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
         
         expect(Item.all.length).to eq(2)
+      end
+    end
+
+    describe '.format_price' do
+      it 'should return the unit_price as a user-readable price' do
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
+        formatted_price = Item.format_price(Item.find(1234567).price)
+
+        expect(formatted_price).to eq(4000.00)
       end
     end
   end
