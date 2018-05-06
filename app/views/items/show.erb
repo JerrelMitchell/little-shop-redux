@@ -18,11 +18,11 @@
   </section>
   <section class="item-information-container">
     <div class="item-merchant-and-image">
-      <a href="#needs_to_be_a_merchant"><%= @item.merchant[:name] %></a>
+      <a href="#needs_to_be_a_merchant"><%= @item.merchant.name %></a>
     </div>
     <div class="item-information">
       <h3 class="title"><%= @item.title %></h3>
-      <span class="price"><%= Item.format_price(@item.price) %></span>
+      <span class="price"><%= @item.price %></span>
       <span class="description"><%= @item.description %></span>
     </div>
   </section>

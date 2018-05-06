@@ -6,6 +6,8 @@ RSpec.describe 'Items Pages' do
     Item.create(@first_item_attrs)
     Item.create(@second_item_attrs)
     Item.create(@third_item_attrs)
+    @merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
+    Item.find(1).update(merchant_id: 1)
   end
 
   describe 'a typical user visits the items page' do
@@ -77,7 +79,7 @@ RSpec.describe 'Items Pages' do
 
     it 'they should see the item\'s price' do
       visit '/item/1'
-      price = Item.format_price(@first_item_attrs[:price])
+      price = Item.format_price(@first_item_attrs[:price]).to_s
 
       save_and_open_page
       within('.item-information') do
@@ -94,11 +96,10 @@ RSpec.describe 'Items Pages' do
     end
 
     it 'they should see the merchant\'s name' do
-      merchant = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
       visit '/item/1'
 
-      within('.item-information') do
-        expect(page).to have_content(merchant.name)
+      within('.item-merchant-and-image') do
+        expect(page).to have_content(@merchant1.name)
       end
     end
   end
