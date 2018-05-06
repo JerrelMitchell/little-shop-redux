@@ -1,3 +1,5 @@
 db/csv/*.csv
 Gemfile.lock
-/tmp
+.ruby-version
+tmp/
+
