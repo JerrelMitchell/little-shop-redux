@@ -1,8 +1,7 @@
-<h1> Invoices: </h1>
-
+<h1>Invoices</h1>
 <% @invoices.each do |invoice| %>
     <ul>
         <li><%= invoice.merchant_id %></li>
         <li><%= invoice.status %></li>
-    <ul>
+    </ul>
 <% end %>
