@@ -21,9 +21,8 @@ RSpec.describe Invoice do
         invoice_1 = Invoice.create(merchant_id: 12334111, status: "pending")
         invoice_2 = Invoice.create(merchant_id: 12334112, status: "shipped")
         invoice_3 = Invoice.create(merchant_id: 12334113, status: "shipped")
-        invoices = [invoice_1, invoice_2, invoice_3]
 
-        expect(invoices.length).to eq(3)
+        expect(Invoice.all.length).to eq(3)
       end
     end
 
@@ -74,7 +73,7 @@ RSpec.describe Invoice do
 
         Invoice.delete(3)
 
-        expect(Invoice.find(3)).to eq(nil)
+        expect(Invoice.find_by(id: 3)).to eq(nil)
       end
     end
   end

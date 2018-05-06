@@ -2,4 +2,8 @@
     <ul>
     <li> merchant id: <%= @invoice.merchant_id %></li>
     <li> status: <%= @invoice.status %></li>
+    <li> status: <%= @invoice.updated_at %></li>
+    <li> status: <%= @invoice.created_at %></li>
+    <li><a href="/invoices/<%= @invoice.id %>/delete">Delete Invoice</a></li>
+    <li><a href="/invoices/<%= @invoice.id %>/edit">Edit Invoice</a></li>
     </ul>

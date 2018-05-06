@@ -1,7 +1,9 @@
-<h1>Invoices</h1>
+<h1>Invoice Index</h1>
 <% @invoices.each do |invoice| %>
     <ul>
         <li>merchant id: <%= invoice.merchant_id %></li>
         <li>status :<%= invoice.status %></li>
+        <li><a href="/invoices/<%= invoice.id %>/delete">Delete Invoice</a></li>
+        <li><a href="/invoices/<%= invoice.id %>/edit">Edit Invoice</a></li>
     </ul>
 <% end %>
