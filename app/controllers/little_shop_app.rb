@@ -1,6 +1,6 @@
 class LittleShopApp < Sinatra::Base
   get '/items' do
-    @all_items = Item.all
+    @all_items = Item.all_formatted
     erb :'items/index'
   end
 

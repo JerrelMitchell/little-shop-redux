@@ -1,7 +1,7 @@
 RSpec.describe 'Items Pages' do
   before(:each) do
-    @first_item_attrs = {id: 1, title: 'The First Cool Item', description: 'It\'s alright', price: 300, image: 'imgs/img1'}
-    @second_item_attrs = {id: 2, title: 'The Second Cool Item', description: 'It\'s cool', price: 800, image: 'imgs/img2'}
+    @first_item_attrs = {id: 1, title: 'The First Cool Item', description: 'It\'s alright', price: 357, image: 'imgs/img1'}
+    @second_item_attrs = {id: 2, title: 'The Second Cool Item', description: 'It\'s cool', price: 1000, image: 'imgs/img2'}
     @third_item_attrs = {id: 3, title: 'The Third Cool Item', description: 'It\'s the coolest', price: 900, image: 'imgs/img3'}
     Item.create(@first_item_attrs)
     Item.create(@second_item_attrs)
@@ -45,15 +45,15 @@ RSpec.describe 'Items Pages' do
       visit '/items'
 
       within('#item-1') do
-        expect(page).to have_content(@first_item_attrs[:price].to_s)
+        expect(page).to have_content(Item.format_price(@first_item_attrs[:price]).to_s)
       end
 
       within('#item-2') do
-        expect(page).to have_content(@second_item_attrs[:price].to_s)
+        expect(page).to have_content(Item.format_price(@second_item_attrs[:price]).to_s)
       end
 
       within('#item-3') do
-        expect(page).to have_content(@third_item_attrs[:price].to_s)
+        expect(page).to have_content(Item.format_price(@third_item_attrs[:price]).to_s)
       end
     end
   end
