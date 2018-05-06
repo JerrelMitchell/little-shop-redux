@@ -1,8 +1,14 @@
 RSpec.describe 'Items Pages' do
   before(:each) do
-    @first_item_attrs = {id: 1, title: 'The First Cool Item', description: 'It\'s alright', price: 357, image: 'imgs/img1'}
-    @second_item_attrs = {id: 2, title: 'The Second Cool Item', description: 'It\'s cool', price: 1000, image: 'imgs/img2'}
-    @third_item_attrs = {id: 3, title: 'The Third Cool Item', description: 'It\'s the coolest', price: 900, image: 'imgs/img3'}
+    @first_item_attrs = { id: 1, title: 'The First Cool Item',
+                         description: 'It\'s alright',
+                         price: 357, image: 'imgs/img1' } 
+    @second_item_attrs = { id: 2, title: 'The Second Cool Item',
+                           description: 'It\'s cool',
+                           price: 1000, image: 'imgs/img2'}
+    @third_item_attrs = { id: 3, title: 'The Third Cool Item',
+                          description: 'It\'s the coolest',
+                          price: 900, image: 'imgs/img3'}
     Item.create(@first_item_attrs)
     Item.create(@second_item_attrs)
     Item.create(@third_item_attrs)
@@ -81,7 +87,6 @@ RSpec.describe 'Items Pages' do
       visit '/item/1'
       price = Item.format_price(@first_item_attrs[:price]).to_s
 
-      save_and_open_page
       within('.item-information') do
         expect(page).to have_content(price)
       end
