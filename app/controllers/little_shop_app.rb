@@ -1,13 +1,13 @@
 class LittleShopApp < Sinatra::Base
     get '/invoices' do
         @invoices = Invoice.all
-        erb :invoices
+        erb :"invoices/index"
     end
 
    
     get '/invoices/:id' do
         @invoice = Invoice.find(params['id'])
-        erb :"merchants/show"
+        erb :"invoices/show"
     end
 
     get '/invoices/:id/edit' do
