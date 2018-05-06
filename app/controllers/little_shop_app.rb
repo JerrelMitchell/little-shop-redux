@@ -1,5 +1,5 @@
 class LittleShopApp < Sinatra::Base
-    get '/invoices' do
+    get ['/invoices', '/invoices/'] do
         @invoices = Invoice.all
         erb :"invoices/index"
     end
