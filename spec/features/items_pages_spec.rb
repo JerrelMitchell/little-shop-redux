@@ -112,7 +112,7 @@ RSpec.describe 'Items Pages' do
   end
 
   describe 'a typical user visits the new items page' do
-    it 'they should see a form with a merchant dropdown list' do
+    xit 'they should see a form with a merchant dropdown list' do
       visit '/items/new'
 
       within('form#new-item') do
@@ -123,7 +123,7 @@ RSpec.describe 'Items Pages' do
       end
     end
 
-    it 'they should see a correct fields' do
+    xit 'they should see a correct fields' do
       visit '/items/new'
 
       within('form#new-item') do
@@ -134,6 +134,7 @@ RSpec.describe 'Items Pages' do
       end
     end
 
-    it 'they should be able to enter information '
+    xit 'they should be able to enter information, create a new item, and be redirect to index' do
+    end
   end
 end
