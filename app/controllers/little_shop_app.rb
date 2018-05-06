@@ -9,4 +9,8 @@ class LittleShopApp < Sinatra::Base
     @item.price = @item.price / 100
     erb :'items/show'
   end
+
+  get '/items/new' do
+    
+  end
 end

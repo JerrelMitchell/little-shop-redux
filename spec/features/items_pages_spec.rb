@@ -13,7 +13,9 @@ RSpec.describe 'Items Pages' do
     Item.create(@second_item_attrs)
     Item.create(@third_item_attrs)
     @merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
+    @merchant2 = Merchant.create(id: 2, name: 'The Sort of Cool Merchant', item_id: 2)
     Item.find(1).update(merchant_id: 1)
+    Item.find(2).update(merchant_id: 2)
   end
 
   describe 'a typical user visits the items page' do
@@ -107,5 +109,31 @@ RSpec.describe 'Items Pages' do
         expect(page).to have_content(@merchant1.name)
       end
     end
+  end
+
+  describe 'a typical user visits the new items page' do
+    it 'they should see a form with a merchant dropdown list' do
+      visit '/items/new'
+
+      within('form#new-item') do
+        within('#merchant-menu') do
+          expect(page).to have_content(@merchant1.name)
+          expect(page).to have_content(@merchant2.name)
+        end
+      end
+    end
+
+    it 'they should see a correct fields' do
+      visit '/items/new'
+
+      within('form#new-item') do
+        expect(page).to have_content('Title')
+        expect(page).to have_content('Description')
+        expect(page).to have_content('Price')
+        expect(page).to have_content('Image URL')
+      end
+    end
+
+    it 'they should be able to enter information '
   end
 end
