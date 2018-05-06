@@ -47,8 +47,36 @@ RSpec.describe Invoice do
         expect(Invoice.find_by(status: "returned")).to eq(invoice_3)
       end
     end
+
+    describe '.update' do
+      it 'should update the invoice instance and save to database' do
+        Invoice.create(merchant_id: 12334111, status: "pending")
+        Invoice.create(merchant_id: 12334112, status: "shipped")
+        Invoice.create(merchant_id: 12334113, status: "shipped")
+        invoice_3 = Invoice.find(3)
+
+        expect(invoice_3[:status]).to eq("shipped")
+
+        updated_invoice = Invoice.update(3, status: "returned")
+
+        expect(updated_invoice[:status]).to eq("returned")
+      end
+    end
+
+    describe '.delete' do
+      it 'should update the invoice instance and save to database' do
+        Invoice.create(merchant_id: 12334111, status: "pending")
+        Invoice.create(merchant_id: 12334112, status: "shipped")
+        Invoice.create(merchant_id: 12334113, status: "shipped")
+        invoice_3 = Invoice.find(3)
+
+        expect(Invoice.find(3)).to eq(invoice_3)
+
+        Invoice.delete(3)
+
+        expect(Invoice.find(3)).to eq(nil)
+      end
+    end
   end
-
-
 
 end
