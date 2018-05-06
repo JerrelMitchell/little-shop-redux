@@ -1,11 +1,13 @@
-ENV["RACK_ENV"] ||= "test"
-
+ENV["RACK_ENV"] = "test"
 
 require 'bundler'
 Bundler.require(:default, :test)
-require File.expand_path('../../config/environment.rb', __FILE__)
-require 'rspec'
+
+require File.expand_path("../../config/environment.rb", __FILE__)
 require 'capybara/dsl'
+
+Capybara.app = LittleShopApp
+Capybara.save_path = 'tmp'
 
 DatabaseCleaner.strategy = :truncation
 

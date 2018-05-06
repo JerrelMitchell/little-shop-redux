@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<h1>Items</h1>
+<% @all_items.each do |item| %>
+  <ul id="item-<%= item.id %>">
+    <li><%= item.title %></li>
+    <li><%= item.price %></li>
+    <li><%= item.description %></li>
+    <li><img src="<%= item.image %>" /></li>
+  </ul>
+<% end %>
+</body>
+</html>

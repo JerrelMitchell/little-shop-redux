@@ -9,6 +9,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'pry'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'launchy'
   gem 'rack-test'
   gem 'rspec'
