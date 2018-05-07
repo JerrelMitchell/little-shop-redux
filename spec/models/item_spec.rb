@@ -24,12 +24,13 @@ RSpec.describe Item do
       expect(item).to_not be_valid
     end
   end
+
   describe 'Class Methods' do
     describe '.all' do
       it 'should have all items accounted for' do
         Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '800_000', image: '/imgs/shirt')
         Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
-        
+
         expect(Item.all.length).to eq(2)
       end
     end
