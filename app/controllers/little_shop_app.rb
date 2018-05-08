@@ -70,6 +70,11 @@ class LittleShopApp < Sinatra::Base
     redirect '/items'
   end
 
+  get '/items-dashboard' do
+    @items_average = Item.average_item_price
+    erb :"items/dashboard"
+  end
+
   # Merchant Paths
 
   get ['/', '/merchants'] do
