@@ -147,29 +147,58 @@ RSpec.describe 'Items Pages' do
         click_button(id: 'item-submit')
       end
 
+      item = Item.find(4)
+
       expect(current_path).to eq('/items')
-      expect(Item.find(4).title).to eq(new_item_attrs[:title])
-      expect(Item.find(4).description).to eq(new_item_attrs[:description])
-      expect(Item.find(4).price).to eq(new_item_attrs[:price].to_f * 100)
-      expect(Item.find(4).image).to eq(new_item_attrs[:image_url])
-      expect(Item.find(4).merchant_id).to eq(1)
+      expect(item.title).to eq(new_item_attrs[:title])
+      expect(item.description).to eq(new_item_attrs[:description])
+      expect(item.price).to eq(new_item_attrs[:price].to_f * 100)
+      expect(item.image).to eq(new_item_attrs[:image_url])
+      expect(item.merchant_id).to eq(1)
+    end
+
+    it 'they should be able to cancel after filling in fields without creating an item' do
+      visit '/items/new'
+      new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
+
+      within('#new-item') do
+        select('The Coolest Merchant', from: 'merchant-menu')
+        fill_in(id: 'item-title', with: new_item_attrs[:title])
+        fill_in(id: 'item-description', with: new_item_attrs[:description])
+        fill_in(id: 'item-price', with: new_item_attrs[:price])
+        fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
+        click_link('Cancel')
+      end
+
+      expect(Item.all.length).to eq(3)
+      expect(current_path).to eq('/items')
     end
   end
 
-  it 'they should be able to cancel after filling in fields without creating an item' do
-    visit '/items/new'
-    new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
+  describe 'a typical user visits the edit page for an item' do
+    it 'they should be able to fill out the fields and update the item' do
+      visit '/item/1/edit'
 
-    within('#new-item') do
-      select('The Coolest Merchant', from: 'merchant-menu')
-      fill_in(id: 'item-title', with: new_item_attrs[:title])
-      fill_in(id: 'item-description', with: new_item_attrs[:description])
-      fill_in(id: 'item-price', with: new_item_attrs[:price])
-      fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
-      click_link('Cancel')
+      edited_attrs = { title: 'An Edited Item', description: 'This is an edited item', price: '1.99', image_url: 'images/edited_item'}
+
+      within('#edit-item') do
+        select('The Coolest Merchant', from: 'merchant-menu')
+        fill_in(id: 'edit-title', with: 'An Edited Item')
+        fill_in(id: 'edit-description', with: 'This is an edited item')
+        fill_in(id: 'edit-price', with: '1.99')
+        fill_in(id: 'edit-image-url', with: 'images/edited')
+        click_button(id: 'submit-edit')
+      end
+
+      item = Item.find(1)
+
+      expect(current_path).to eq('/item/1')
+      expect(item.merchant_id).to eq(1)
+      expect(item.title).to eq(edited_attrs[:title])
+      expect(item.description).to eq(edited_attrs[:description])
+      expect(item.price).to eq(edited_attrs[:price].to_f * 100)
+      expect(item.image).to eq(edited_attrs[:image_url])
     end
-
-    expect(Item.all.length).to eq(3)
-    expect(current_path).to eq('/items')
   end
+
 end

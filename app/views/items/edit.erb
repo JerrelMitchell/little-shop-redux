@@ -1,0 +1,11 @@
+<header>
+  <h1>Edit <%= @item.title %></h1>
+</header>
+<form id="edit-item">
+  <label for="edit-title">Title: </label>
+  <input id="edit-title" name="item[title]" value="<%= @item.title %>">
+  <label for="edit-description">
+  <input id="edit-description" name="item[description]" value="<%= @item.description %>">
+  <label for="edit-price">
+  <input id="edit-price" name="item[price]">
+</form>
