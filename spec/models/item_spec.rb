@@ -35,6 +35,15 @@ RSpec.describe Item do
       end
     end
 
+    describe '.all_formatted' do
+      it 'should return all available items without unit_price formatted for views' do
+        Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '800_000', image: '/imgs/shirt')
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
+
+        expect(Item.all_formatted.map(&:price)).to eq([8000.0, 4000.0])
+      end
+    end
+
     describe '.format_price' do
       it 'should return the unit_price as a user-readable price' do
         Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
