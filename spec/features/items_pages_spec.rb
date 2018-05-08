@@ -1,17 +1,17 @@
 RSpec.describe 'Items Pages' do
   before(:each) do
-    @first_item_attrs = { id: 1, title: 'The First Cool Item',
-                         description: 'It\'s alright',
-                         price: 357, image: 'imgs/img1' } 
-    @second_item_attrs = { id: 2, title: 'The Second Cool Item',
+    @item_1_attributes = { id: 1, title: 'The First Cool Item',
+                           description: 'It\'s alright',
+                           price: 357, image: 'imgs/img1' }
+    @item_2_attributes = { id: 2, title: 'The Second Cool Item',
                            description: 'It\'s cool',
-                           price: 1000, image: 'imgs/img2'}
-    @third_item_attrs = { id: 3, title: 'The Third Cool Item',
-                          description: 'It\'s the coolest',
-                          price: 900, image: 'imgs/img3'}
-    Item.create(@first_item_attrs)
-    Item.create(@second_item_attrs)
-    Item.create(@third_item_attrs)
+                           price: 1000, image: 'imgs/img2' }
+    @item_3_attributes = { id: 3, title: 'The Third Cool Item',
+                           description: 'It\'s the coolest',
+                           price: 900, image: 'imgs/img3' }
+    Item.create(@item_1_attributes)
+    Item.create(@item_2_attributes)
+    Item.create(@item_3_attributes)
     @merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
     @merchant2 = Merchant.create(id: 2, name: 'The Sort of Cool Merchant', item_id: 2)
     Item.find(1).update(merchant_id: 1)
@@ -23,15 +23,15 @@ RSpec.describe 'Items Pages' do
       visit '/items'
 
       within('#item-1') do
-        expect(page).to have_content(@first_item_attrs[:title])
+        expect(page).to have_content(@item_1_attributes[:title])
       end
 
       within('#item-2') do
-        expect(page).to have_content(@second_item_attrs[:title])
+        expect(page).to have_content(@item_2_attributes[:title])
       end
 
       within('#item-3') do
-        expect(page).to have_content(@third_item_attrs[:title])
+        expect(page).to have_content(@item_3_attributes[:title])
       end
     end
 
@@ -39,15 +39,15 @@ RSpec.describe 'Items Pages' do
       visit '/items'
 
       within('#item-1') do
-        expect(page).to have_content(@first_item_attrs[:description])
+        expect(page).to have_content(@item_1_attributes[:description])
       end
 
       within('#item-2') do
-        expect(page).to have_content(@second_item_attrs[:description])
+        expect(page).to have_content(@item_2_attributes[:description])
       end
 
       within('#item-3') do
-        expect(page).to have_content(@third_item_attrs[:description])
+        expect(page).to have_content(@item_3_attributes[:description])
       end
     end
 
@@ -55,15 +55,15 @@ RSpec.describe 'Items Pages' do
       visit '/items'
 
       within('#item-1') do
-        expect(page).to have_content(Item.format_price(@first_item_attrs[:price]).to_s)
+        expect(page).to have_content(Item.format_price(@item_1_attributes[:price]).to_s)
       end
 
       within('#item-2') do
-        expect(page).to have_content(Item.format_price(@second_item_attrs[:price]).to_s)
+        expect(page).to have_content(Item.format_price(@item_2_attributes[:price]).to_s)
       end
 
       within('#item-3') do
-        expect(page).to have_content(Item.format_price(@third_item_attrs[:price]).to_s)
+        expect(page).to have_content(Item.format_price(@item_3_attributes[:price]).to_s)
       end
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe 'Items Pages' do
       visit '/item/1'
 
       within('.item-metainfo') do
-        expect(page).to have_content(@first_item_attrs[:title])
+        expect(page).to have_content(@item_1_attributes[:title])
       end
     end
 
@@ -81,13 +81,13 @@ RSpec.describe 'Items Pages' do
       visit '/item/1'
 
       within('.item-information') do
-        expect(page).to have_content(@first_item_attrs[:title])
+        expect(page).to have_content(@item_1_attributes[:title])
       end
     end
 
     it 'they should see the item\'s price' do
       visit '/item/1'
-      price = Item.format_price(@first_item_attrs[:price]).to_s
+      price = Item.format_price(@item_1_attributes[:price]).to_s
 
       within('.item-information') do
         expect(page).to have_content(price)
@@ -98,7 +98,7 @@ RSpec.describe 'Items Pages' do
       visit '/item/1'
 
       within('.item-information') do
-        expect(page).to have_content(@first_item_attrs[:description])
+        expect(page).to have_content(@item_1_attributes[:description])
       end
     end
 
@@ -136,36 +136,36 @@ RSpec.describe 'Items Pages' do
 
     it 'they should be able to enter information to create a new item, and be redirected to item index' do
       visit '/items/new'
-      new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
+      new_item_attributes = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
 
       within('#new-item') do
         select('The Coolest Merchant', from: 'merchant-menu')
-        fill_in(id: 'item-title', with: new_item_attrs[:title])
-        fill_in(id: 'item-description', with: new_item_attrs[:description])
-        fill_in(id: 'item-price', with: new_item_attrs[:price])
-        fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
+        fill_in(id: 'item-title', with: new_item_attributes[:title])
+        fill_in(id: 'item-description', with: new_item_attributes[:description])
+        fill_in(id: 'item-price', with: new_item_attributes[:price])
+        fill_in(id: 'item-image-url', with: new_item_attributes[:image_url])
         click_button(id: 'item-submit')
       end
 
       expect(current_path).to eq('/items')
-      expect(Item.find(4).title).to eq(new_item_attrs[:title])
-      expect(Item.find(4).description).to eq(new_item_attrs[:description])
-      expect(Item.find(4).price).to eq(new_item_attrs[:price].to_f * 100)
-      expect(Item.find(4).image).to eq(new_item_attrs[:image_url])
+      expect(Item.find(4).title).to eq(new_item_attributes[:title])
+      expect(Item.find(4).description).to eq(new_item_attributes[:description])
+      expect(Item.find(4).price).to eq(new_item_attributes[:price].to_f * 100)
+      expect(Item.find(4).image).to eq(new_item_attributes[:image_url])
       expect(Item.find(4).merchant_id).to eq(1)
     end
   end
 
   it 'they should be able to cancel after filling in fields without creating an item' do
     visit '/items/new'
-    new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
+    new_item_attributes = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
 
     within('#new-item') do
       select('The Coolest Merchant', from: 'merchant-menu')
-      fill_in(id: 'item-title', with: new_item_attrs[:title])
-      fill_in(id: 'item-description', with: new_item_attrs[:description])
-      fill_in(id: 'item-price', with: new_item_attrs[:price])
-      fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
+      fill_in(id: 'item-title', with: new_item_attributes[:title])
+      fill_in(id: 'item-description', with: new_item_attributes[:description])
+      fill_in(id: 'item-price', with: new_item_attributes[:price])
+      fill_in(id: 'item-image-url', with: new_item_attributes[:image_url])
       click_link('Cancel')
     end
 

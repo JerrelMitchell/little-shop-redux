@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_05_08_154604) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer "merchant_id"
+    t.integer "merchant_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_05_08_154604) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "merchant_id"
+    t.integer "merchant_id", null: false
   end
 
   create_table "merchants", force: :cascade do |t|
