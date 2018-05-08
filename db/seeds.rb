@@ -2,6 +2,7 @@ require './db/csv/csv_wizard'
 require './app/models/merchant.rb'
 require './app/models/invoice.rb'
 require './app/models/item.rb'
+require './app/models/invoice_item.rb'
 
 merchants = CSVWizard.read_file('./data/merchants.csv')
 merchants.each do |merchant|
@@ -31,3 +32,13 @@ items.each do |item|
 
   Merchant.find(item[:merchant_id]).update(item_id: item[:id])
 end
+
+invoice_items = CSVWizard.read_file('./data/invoice_items.csv')
+invoice_items.each do |invoice_item|
+  InvoiceItem.create(id:           invoice_item[:id],
+                    item_id:       invoice_item[:item_id],
+                    invoice_id:    invoice_item[:invoice_id],
+                    quantity:      invoice_item[:quantity],
+                    unit_price:    invoice_item[:unit_price])
+end
+
