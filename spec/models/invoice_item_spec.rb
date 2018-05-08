@@ -29,9 +29,9 @@ RSpec.describe InvoiceItem do
   describe 'invoice items relationships' do
 
     before(:each) do
-      @invoice1 = Invoice.create(merchant_id: 12334111, status: 'pending')
-      @invoice2 = Invoice.create(merchant_id: 12334112, status: 'shipped')
-      @invoice3 = Invoice.create(merchant_id: 12334113, status: 'returned')
+      invoice1 = Invoice.create(merchant_id: 12334111, status: 'pending')
+      invoice2 = Invoice.create(merchant_id: 12334112, status: 'shipped')
+      invoice3 = Invoice.create(merchant_id: 12334113, status: 'returned')
       @first_item_attrs = { id: 1, title: 'The First Cool Item',
                          description: 'It\'s alright',
                          price: 357, image: 'imgs/img1' } 
@@ -41,13 +41,16 @@ RSpec.describe InvoiceItem do
       @third_item_attrs = { id: 3, title: 'The Third Cool Item',
                           description: 'It\'s the coolest',
                           price: 900, image: 'imgs/img3'}
-      Item.create(@first_item_attrs)
-      Item.create(@second_item_attrs)
-      Item.create(@third_item_attrs)
+      @item1 = Item.create(@first_item_attrs)
+      @item2 = Item.create(@second_item_attrs)
+      @item3 = Item.create(@third_item_attrs)
+
+      InvoiceItem.create(item_id: @item1.id, invoice_id: invoice1.id, quantity: 2, unit_price: '714')
+      InvoiceItem.create(item_id: @item2.id, invoice_id: invoice1.id, quantity: 5, unit_price: '5000')
     end
     it 'should give invoice acccess to items through item_id' do
-
-
+      invoice_item = Invoice.find(1).items
+      expect(invoice_item).to eq([@item1, @item2])
     end
   end
 end
