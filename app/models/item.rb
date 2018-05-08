@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
   validates :image, presence: true
+  validates :merchant_id, presence: true
 
   def self.format_price(unit_price)
     (unit_price.to_f / 100)
