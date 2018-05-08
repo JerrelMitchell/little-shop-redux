@@ -68,5 +68,18 @@ RSpec.describe Item do
         expect(Item.find(1234568).merchant_id).to eq(1)
       end
     end
+
+    describe '.update' do
+      it 'should update the item using given item attributes and id should not be updated' do
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
+        params = { item: {title: 'Shirt', description: 'not so cool shirt', price: '300', image: 'imgs/shirt' } }
+        Item.update(params[:item])
+
+        expect(Item.find(1234567).title).to eq(params[:item][:title]) 
+        expect(Item.find(1234567).description).to eq(params[:item][:description]) 
+        expect(Item.find(1234567).price).to eq(params[:item][:price].to_f) 
+        expect(Item.find(1234567).image).to eq(params[:item][:image]) 
+      end
+    end
   end
 end

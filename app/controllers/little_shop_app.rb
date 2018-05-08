@@ -50,6 +50,11 @@ class LittleShopApp < Sinatra::Base
     erb :"items/new"
   end
 
+  get '/item/:id/edit' do
+    @item = Item.find(params[:id])
+    erb :"items/edit"
+  end
+
   post '/items' do
     Item.add_item(params[:item])
     redirect '/items'
