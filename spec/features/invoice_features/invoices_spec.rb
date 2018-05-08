@@ -57,6 +57,9 @@ RSpec.describe 'Visitors' do
     end
 
     it 'should have a form to accept new status' do
+      merchant_id = 12334105
+      status = 'pending'
+
       new_status = 'shipped'
       merchant_id = 12334111
       content = "Current Status: #{@invoice1.status}"
@@ -72,6 +75,7 @@ RSpec.describe 'Visitors' do
     end
 
     it 'should redirect user to /invoices/:id after editing' do
+
       new_status = 'shipped'
 
       visit('/invoices/1/edit')
