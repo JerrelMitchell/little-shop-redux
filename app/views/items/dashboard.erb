@@ -6,5 +6,20 @@
     <h2 class="dashboard-heading">Total Item Count</h2>
     <h3 class="item-metric"><%= @total_items %></h3>
   </section>
+  <section id="average-item-price">
+    <h2 class="dashboard-heading">Average Price Per Item</h2>
+    <h3 class="item-metric"><%= @items_average_price %></h3>
+  </section>
+  <section id="items-by-age">
+    <h2 class="dashboard-heading">Item By Age</h2>
+    <div id="newest-item">
+      <h3 class='metric-title'>Newest</h3>
+      <span>Item: <a href='/item/<%= @newest_item.id %>'><%= @newest_item.title %></a></span>
+    </div>
+    <div id="oldest-item">
+      <h3 class='metric-title'>Oldest</h3>
+      <span>Item: <a href='/item/<%= @oldest_item.id %>'><%= @oldest_item.title %></a></span>
+    </div>
+  </section>
 </main>
 

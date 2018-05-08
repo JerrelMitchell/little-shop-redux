@@ -71,8 +71,10 @@ class LittleShopApp < Sinatra::Base
   end
 
   get '/items-dashboard' do
-    @items_average = Item.average_item_price
+    @items_average_price = Item.average_item_price
     @total_items = Item.count
+    @newest_item = Item.order("created_at DESC").limit(1).first
+    @oldest_item = Item.order("created_at ASC").limit(1).first
     erb :"items/dashboard"
   end
 

@@ -2,13 +2,13 @@ RSpec.describe 'Items Pages' do
   before(:each) do
     @first_item_attrs = { id: 1, title: 'The First Cool Item',
                          description: 'It\'s alright',
-                         price: 357, image: 'imgs/img1' } 
+                         price: 357, image: 'imgs/img1' }
     @second_item_attrs = { id: 2, title: 'The Second Cool Item',
                            description: 'It\'s cool',
-                           price: 1000, image: 'imgs/img2'}
+                           price: 1000, image: 'imgs/img2' }
     @third_item_attrs = { id: 3, title: 'The Third Cool Item',
                           description: 'It\'s the coolest',
-                          price: 900, image: 'imgs/img3'}
+                          price: 900, image: 'imgs/img3' }
     @item1 = Item.create(@first_item_attrs)
     @item2 = Item.create(@second_item_attrs)
     @item3 = Item.create(@third_item_attrs)

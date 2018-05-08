@@ -30,8 +30,8 @@ RSpec.describe 'Items Dashboard' do
     end
   end
 
-  describe 'average' do
-    it 'should display the correct average information on the page' do
+  describe 'Total Items' do
+    it 'should display the correct total items information on the page' do
       visit '/items-dashboard'
 
       total = 3
@@ -40,6 +40,40 @@ RSpec.describe 'Items Dashboard' do
       within('#total-item-count') do
         expect(page).to have_content(section_title)
         expect(page).to have_content(total)
+      end
+    end
+  end
+
+  describe 'Average Item Price' do
+    it 'should display the correct average item price information on the page' do
+      visit '/items-dashboard'
+
+      average = 7.52
+      section_title = 'Average Price Per Item'
+
+      within('#average-item-price') do
+        expect(page).to have_content(section_title)
+        expect(page).to have_content(average)
+      end
+    end
+  end
+
+  describe 'Items By Age' do
+    it 'should display the oldest and newest items titles and headings on the page' do
+      visit '/items-dashboard'
+
+      oldest = @item1
+      newest = @item3
+
+      within('#items-by-age') do
+        within('#newest-item') do
+          expect(page).to have_content('Newest')
+          expect(page).to have_content(newest.title)
+        end
+        within('#oldest-item') do
+          expect(page).to have_content('Oldest')
+          expect(page).to have_content(oldest.title)
+        end
       end
     end
   end
