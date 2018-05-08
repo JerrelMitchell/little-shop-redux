@@ -42,7 +42,6 @@ class LittleShopApp < Sinatra::Base
   get '/item/:id' do
     @item = Item.find(params[:id])
     @item.price = @item.price / 100
-    # require 'pry';binding.pry
     erb :'items/show'
   end
 

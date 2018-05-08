@@ -1,14 +1,14 @@
-<section class="item-metainfo">
+<header class="item-metainfo">
   <h1><%= @item.title %></h1>
   <button id="edit-item"><a href='/item/<%= @item.id %>/edit'>Edit</a></button>
   <form id='delete-item-<%= @item.id %>' action='/item/<%= @item.id %>' method='POST'>
     <input type='hidden' name='_method' value='DELETE'/>
     <input type='submit' value='Delete'>
   </form>
-</section>
+</headern>
 <section class="item-information-container">
   <div class="item-merchant-and-image">
-    <a href="#needs_to_be_a_merchant"><%= @item.merchant.name %></a>
+    <a href="/merchants/<%= @item.merchant.id %>"><%= @item.merchant.name %></a>
   </div>
   <div class="item-information">
     <h3 class="title"><%= @item.title %></h3>

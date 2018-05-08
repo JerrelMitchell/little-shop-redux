@@ -14,9 +14,6 @@ RSpec.describe 'Items Dashboard' do
     @item3 = Item.create(@third_item_attrs)
     @merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
     @merchant2 = Merchant.create(id: 2, name: 'The Sort of Cool Merchant', item_id: 2)
-    # @item1.update(merchant_id: 1)
-    # @item2.update(merchant_id: 2)
-    # @item3.update(merchant_id: 2)
   end
 
   describe 'page information' do

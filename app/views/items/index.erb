@@ -1,5 +1,7 @@
 <header>
+  <a href="/items-dashboard">Dashboard</a>
   <h1>Items</h1>
+  <button id="create-new-item"><a href="/items/new">Create New Item</a></button>
 </header>
 <% @all_items.each do |item| %>
   <ul id="item-<%= item.id %>">
