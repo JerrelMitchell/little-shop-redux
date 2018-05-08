@@ -5,9 +5,8 @@
   <body> -->
     <h1>Merchant Name: <%= @merchant.name %></h1>
     <ul>
-      <li>ID Number: <%= @merchant.id %></li>
-      <li>Created: <%= @merchant.created_at %></li>
-      <li>Updated: <%= @merchant.updated_at %></li>
+      <li><a href="/merchants/<%= @merchant.id %>/edit">Edit</a></li>
+      <li><a href="/merchants/<%= @merchant.id %>/delete">Delete</a></li>
     </ul>
   <!-- </body>
   </html> -->
