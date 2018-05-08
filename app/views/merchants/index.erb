@@ -3,11 +3,14 @@
   <head>
   </head>
   <body> -->
+  <li><a href="/merchants/new">Create A New Merchant</a></li>
       <ul>
         <h1>Merchants</h1>
         <a></a>
         <% @merchants.each do |merchant| %>
-        <li><%= merchant.name %></li>
+        <li><a href="/merchants/<%= merchant.id %>"><%= merchant.name %></a></li>
+        <li><a href="/merchants/<%= merchant.id %>/edit">Edit</a></li>
+        <li><a href="/merchants/<%= merchant.id %>/delete">Delete</a></li>
         <% end %>
       </ul>
   <!-- </body>

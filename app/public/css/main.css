@@ -28,4 +28,47 @@ a:active {
 
 body {
 	font-family: Roboto, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: Roboto, sans-serif;
+}
+
+nav {
+	display: flex;
+	background-color: #bbb;
+	justify-content: space-between;
+	padding: 0 20px;
+	height: 60px;
+	align-items: center;
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+	justify-content: space-between;
+	width: 250px;
+}
+
+/* nav > a {
+  text-decoration: none;
+} */
+
+.nav-item {
+	display: flex;
+	align-items: center;
+}
+
+.nav-item a,
+nav > a {
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
+}
+
+.nav-item a:hover,
+nav > a:hover {
+	background-color: #aaa;
 }

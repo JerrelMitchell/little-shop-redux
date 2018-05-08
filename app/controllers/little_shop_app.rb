@@ -1,4 +1,7 @@
 class LittleShopApp < Sinatra::Base
+
+  # Invoice Paths
+
   get ['/invoices', '/invoices/'] do
     @invoices = Invoice.all
     erb :"invoices/index"
@@ -29,6 +32,8 @@ class LittleShopApp < Sinatra::Base
     redirect "/invoices/#{invoice.id}"
   end
 
+  # Item Paths
+
   get '/items' do
     @all_items = Item.all_formatted
     erb :'items/index'
@@ -41,7 +46,16 @@ class LittleShopApp < Sinatra::Base
   end
 
   get '/items/new' do
+    @merchant_names = Merchant.all.map(&:name)
+    erb :"items/new"
   end
+
+  post '/items' do
+    Item.add_item(params[:item])
+    redirect '/items'
+  end
+
+  # Merchant Paths
 
   get ['/', '/merchants'] do
     @merchants = Merchant.all
