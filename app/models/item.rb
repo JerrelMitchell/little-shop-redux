@@ -19,7 +19,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.new_id
-    Item.last.id + 1
+    Item.order("id DESC").limit(1).first.id + 1
   end
 
   def self.add_item(form_data)
