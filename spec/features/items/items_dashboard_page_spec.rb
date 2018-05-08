@@ -76,5 +76,27 @@ RSpec.describe 'Items Dashboard' do
         end
       end
     end
+
+    it 'clicking on the newest item should load newest items specific page' do
+      visit '/items-dashboard'
+
+      within('#newest-item') do
+        click_link(@item3.title)
+      end
+
+      expect(current_path).to eq("/item/#{@item3.id}")
+      expect(page).to have_content(@item3.title)
+    end
+
+    it 'clicking on the oldest item should load oldest items specific page' do
+      visit '/items-dashboard'
+
+      within('#oldest-item') do
+        click_link(@item1.title)
+      end
+
+      expect(current_path).to eq("/item/#{@item1.id}")
+      expect(page).to have_content(@item1.title)
+    end
   end
 end
