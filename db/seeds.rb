@@ -35,7 +35,7 @@ items.each do |item|
               description: item[:description],
               price:       item[:unit_price],
               merchant_id: item[:merchant_id],
-              image:       "/imgs/item-#{item[:id]}")
+              image:       "/images/alp-studio-426760-unsplash.png")
 
   Merchant.find(item[:merchant_id]).update(item_id: item[:id])
 end

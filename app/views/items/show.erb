@@ -1,32 +1,18 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body> -->
-  <header>
-    <span class="app-name">Little Shop</span>
-    <nav>
-      <ul class="nav-list">
-        <li class="nav-item">Merchants</li>
-        <li class="nav-item">Items</li>
-        <li class="nav-item">Invoices</li>
-      </ul>
-    </nav>
-  </header>
-  <section class="item-metainfo">
-    <h1><%= @item.title %></h1>
-    <button id="edit-item">Edit</button>
-    <button id="delete-item">Delete</button>
-  </section>
-  <section class="item-information-container">
-    <div class="item-merchant-and-image">
-      <a href="#needs_to_be_a_merchant"><%= @item.merchant.name %></a>
-    </div>
-    <div class="item-information">
-      <h3 class="title"><%= @item.title %></h3>
-      <span class="price"><%= @item.price %></span>
-      <span class="description"><%= @item.description %></span>
-    </div>
-  </section>
-  <!-- </body>
-  </html> -->
+<header class="item-metainfo">
+  <h1><%= @item.title %></h1>
+  <button id="edit-item"><a href='/item/<%= @item.id %>/edit'>Edit</a></button>
+  <form id='delete-item-<%= @item.id %>' action='/item/<%= @item.id %>' method='POST'>
+    <input type='hidden' name='_method' value='DELETE'/>
+    <input type='submit' value='Delete'>
+  </form>
+</headern>
+<section class="item-information-container">
+  <div class="item-merchant-and-image">
+    <a href="/merchants/<%= @item.merchant.id %>"><%= @item.merchant.name %></a>
+  </div>
+  <div class="item-information">
+    <h3 class="title"><%= @item.title %></h3>
+    <span class="price">$<%= @item.price %></span>
+    <span class="description"><%= @item.description %></span>
+  </div>
+</section>
