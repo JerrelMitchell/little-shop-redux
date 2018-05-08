@@ -75,10 +75,31 @@ RSpec.describe Item do
         params = { item: {title: 'Shirt', description: 'not so cool shirt', price: '300', image: 'imgs/shirt' } }
         Item.update(params[:item])
 
-        expect(Item.find(1234567).title).to eq(params[:item][:title]) 
-        expect(Item.find(1234567).description).to eq(params[:item][:description]) 
-        expect(Item.find(1234567).price).to eq(params[:item][:price].to_f) 
-        expect(Item.find(1234567).image).to eq(params[:item][:image]) 
+        item = Item.find(1234567)
+
+        expect(item.title).to eq(params[:item][:title]) 
+        expect(item.description).to eq(params[:item][:description]) 
+        expect(item.price).to eq(params[:item][:price].to_f) 
+        expect(item.image).to eq(params[:item][:image]) 
+      end
+    end
+  end
+
+  describe 'Instance Methods' do
+    describe '.update_item' do
+      it 'should be able to update an item, including when given merchant data' do
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
+        merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
+        params = { item: {title: 'Shirt', description: 'not so cool shirt', price: '3.00', image_url: 'imgs/shirt', merchant: merchant1.name } }
+        item = Item.find(1234567)
+        
+        item.update_item(params[:item])
+
+        expect(item.title).to eq(params[:item][:title]) 
+        expect(item.description).to eq(params[:item][:description]) 
+        expect(item.price).to eq(params[:item][:price].to_f * 100) 
+        expect(item.image).to eq(params[:item][:image_url]) 
+        expect(item.merchant_id).to eq(1)
       end
     end
   end
