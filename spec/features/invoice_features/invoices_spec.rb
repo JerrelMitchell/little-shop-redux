@@ -55,13 +55,12 @@ RSpec.describe 'Visitors' do
 
       visit('/invoices/1/edit')
 
-      within('#test') do
-        fill_in 'enter new status', with: new_status
-        click_on("submit")
+      within('#invoice-edit') do
+        fill_in(:id "invoice-status", with: new_status)
+        click_on(id: 'invoice-submit')
       end
 
       expect(current_path).to eq('/invoices/1')
-
-      end
+    end
   end
 end

@@ -3,13 +3,11 @@
   <head>
   </head>
   <body> -->
-<div id='test'>
   <h1 >Edit Invoice: <%= @invoice.id %></h1>
       <p>Current Status: <%= @invoice.status%></p>
-      <form action='/invoices/<%= @invoice.id %>' method="POST">
-      <input type='text' name='invoice[status]' value='enter new status'>
-      <input type='submit' value='Submit'>
+      <form id='invoice-edit' action='/invoices/<%= @invoice.id %>' method="POST">
+        <input id='invoice-status' type='text' name='invoice[status]' value='enter new status'>
+        <button id='invoice-submit' type='submit'>Create Invoice</button>
       </form>
-</div>
   <!-- </body>
 </html> -->
