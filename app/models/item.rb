@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   def self.format_price(unit_price)
     (unit_price.to_f / 100)
   end
-  
+
   def self.all_formatted
     items = all
     items.each do |item|

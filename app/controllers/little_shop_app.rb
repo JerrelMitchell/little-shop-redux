@@ -84,8 +84,6 @@ class LittleShopApp < Sinatra::Base
 
   post '/merchants' do
     @merchants = Merchant.all
-    new_id = (@merchants.max_by(&:id).id + 1)
-    params[:merchant][:id] = new_id
     Merchant.create(params[:merchant])
     redirect '/merchants'
   end
