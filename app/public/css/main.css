@@ -22,3 +22,23 @@ nav ul {
   justify-content: space-between;
   width: 250px;
 }
+
+/* nav > a {
+  text-decoration: none;
+} */
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item a, nav > a {
+  /* color: #FFF; */
+  text-decoration: none;
+  padding: 10px 12px;
+  transition: .2s ease-in-out;
+}
+
+.nav-item a:hover, nav > a:hover {
+  background-color: #AAA;
+}
