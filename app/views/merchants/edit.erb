@@ -3,10 +3,11 @@
   <head>
   </head>
   <body> -->
-    <h1>Edit Merchant: <%= @merchant.name %></h1>
+    <h1>Edit Merchant:</h1>
+    <h3><%= @merchant.name %></h3>
     <form class="update_merchant" action="/merchant/<%=@merchant.id%>" method="post">
       <input type="text" name="merchant[name]" placeholder="Enter New Name Here">
       <input class ="submit-button" type="submit" value="Submit">
     </form>
-    <!-- </body>
-    </html> -->
+  <!-- </body>
+</html> -->

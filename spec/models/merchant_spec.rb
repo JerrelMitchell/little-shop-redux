@@ -34,7 +34,7 @@ RSpec.describe Merchant do
         name = "Brand Spankin' New Shop"
         expect { Merchant.find(3) }.to raise_error(ActiveRecord::RecordNotFound,
                                                    "Couldn't find Merchant with 'id'=3")
-        merchant3 = Merchant.add_merchant(name: name)
+        merchant3 = Merchant.create(name: name)
 
         expect(merchant3.name).to eq(name)
       end

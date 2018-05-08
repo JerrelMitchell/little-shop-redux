@@ -6,6 +6,7 @@ RSpec.describe 'Visitors' do
 
       visit('/merchants/1/edit')
       # find that input field exists
+      # find that update button exists
       # find that delete button exists
 
       expect(status_code).to eq(200)
