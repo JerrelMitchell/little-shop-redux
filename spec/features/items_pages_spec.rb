@@ -112,7 +112,7 @@ RSpec.describe 'Items Pages' do
   end
 
   describe 'a typical user visits the new items page' do
-    xit 'they should see a form with a merchant dropdown list' do
+    it 'they should see a form with a merchant dropdown list' do
       visit '/items/new'
 
       within('form#new-item') do
@@ -123,7 +123,7 @@ RSpec.describe 'Items Pages' do
       end
     end
 
-    xit 'they should see a correct fields' do
+    it 'they should see a correct fields' do
       visit '/items/new'
 
       within('form#new-item') do
@@ -134,7 +134,25 @@ RSpec.describe 'Items Pages' do
       end
     end
 
-    xit 'they should be able to enter information, create a new item, and be redirect to index' do
+    it 'they should be able to enter information to create a new item, and be redirected to item index' do
+      visit '/items/new'
+      new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
+
+      within('#new-item') do
+
+        expect(page).to have_content('Title')
+        fill_in(id: 'item-title', with: new_item_attrs[:title])
+        fill_in(id: 'item-description', with: new_item_attrs[:description])
+        fill_in(id: 'item-price', with: new_item_attrs[:price])
+        fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
+        click_button(id: 'item-submit')
+      end
+
+      expect(current_path).to eq('/items')
+      expect(Item.find(4).title).to eq(new_item_attrs[:title])
+      expect(Item.find(4).description).to eq(new_item_attrs[:description])
+      expect(Item.find(4).price).to eq(new_item_attrs[:price].to_f * 100)
+      expect(Item.find(4).image).to eq(new_item_attrs[:image_url])
     end
   end
 end
