@@ -65,6 +65,11 @@ class LittleShopApp < Sinatra::Base
     Item.find(params[:id]).update_item(params[:item])
   end
 
+  delete '/item/:id' do
+    Item.destroy(params[:id].to_i)
+    redirect '/items'
+  end
+
   # Merchant Paths
 
   get ['/', '/merchants'] do

@@ -1,9 +1,14 @@
-<h1>Items</h1>
+<header>
+  <h1>Items</h1>
+</header>
 <% @all_items.each do |item| %>
   <ul id="item-<%= item.id %>">
+    <li><img class="item-image" src="<%= item.image %>" /></li>
     <li><%= item.title %></li>
     <li><%= item.price %></li>
-    <li><%= item.description %></li>
-    <li><img class="item-image" src="<%= item.image %>" /></li>
   </ul>
+  <form id='delete-item-<%= item.id %>' action='/item/<%= item.id %>' method='POST'>
+    <input type='hidden' name='_method' value='DELETE'/>
+    <input type='submit' value='Delete'>
+  </form>
 <% end %>

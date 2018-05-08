@@ -9,13 +9,14 @@ RSpec.describe 'Items Pages' do
     @third_item_attrs = { id: 3, title: 'The Third Cool Item',
                           description: 'It\'s the coolest',
                           price: 900, image: 'imgs/img3'}
-    Item.create(@first_item_attrs)
-    Item.create(@second_item_attrs)
-    Item.create(@third_item_attrs)
+    @item1 = Item.create(@first_item_attrs)
+    @item2 = Item.create(@second_item_attrs)
+    @item3 = Item.create(@third_item_attrs)
     @merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
     @merchant2 = Merchant.create(id: 2, name: 'The Sort of Cool Merchant', item_id: 2)
-    Item.find(1).update(merchant_id: 1)
-    Item.find(2).update(merchant_id: 2)
+    @item1.update(merchant_id: 1)
+    @item2.update(merchant_id: 2)
+    @item3.update(merchant_id: 2)
   end
 
   describe 'a typical user visits the items page' do
@@ -32,22 +33,6 @@ RSpec.describe 'Items Pages' do
 
       within('#item-3') do
         expect(page).to have_content(@third_item_attrs[:title])
-      end
-    end
-
-    it 'they should see an index page with all items\' descriptions listed' do
-      visit '/items'
-
-      within('#item-1') do
-        expect(page).to have_content(@first_item_attrs[:description])
-      end
-
-      within('#item-2') do
-        expect(page).to have_content(@second_item_attrs[:description])
-      end
-
-      within('#item-3') do
-        expect(page).to have_content(@third_item_attrs[:description])
       end
     end
 
@@ -222,6 +207,36 @@ RSpec.describe 'Items Pages' do
       expect(item.description).to eq(@first_item_attrs[:description])
       expect(item.price).to eq(@first_item_attrs[:price].to_f)
       expect(item.image).to eq(@first_item_attrs[:image])
+    end
+  end
+
+  describe 'a typical user deletes and item from the index or show pages' do
+    it 'they should be able to delete an item from /items' do
+      visit '/items'
+
+      expect(Item.find(1)).to eq(@item1)
+
+      within('#delete-item-1') do
+        click_button('Delete')
+      end
+
+      expect { Item.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(current_path).to eq('/items')
+      expect(page).to_not have_content(@item1.title)
+    end
+
+    it 'they should be able to delete an item from the specific item\'s page' do
+      visit '/item/1'
+
+      expect(Item.find(1)).to eq(@item1)
+
+      within('#delete-item-1') do
+        click_button('Delete')
+      end
+
+      expect { Item.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(current_path).to eq('/items')
+      expect(page).to_not have_content(@item1.title)
     end
   end
 
