@@ -43,5 +43,21 @@ RSpec.describe Item do
         expect(formatted_price).to eq(4000.00)
       end
     end
+
+    describe '.add_item' do
+      it 'given a hash, it should create a new item and save it to the database' do
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
+        Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
+        params = {item: {merchant: 'The Coolest Merchant', title: 'A New Item', description: 'This is a new item', price: '8.99', image_url: 'images/new_image'}}
+        Item.add_item(params[:item])
+
+
+        expect(Item.find(1234568).title).to eq(params[:item][:title])
+        expect(Item.find(1234568).description).to eq(params[:item][:description])
+        expect(Item.find(1234568).price).to eq(params[:item][:price].to_f * 100)
+        expect(Item.find(1234568).image).to eq(params[:item][:image_url])
+        expect(Item.find(1234568).merchant_id).to eq(1)
+      end
+    end
   end
 end

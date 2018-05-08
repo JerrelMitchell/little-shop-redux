@@ -33,7 +33,6 @@ nav ul {
 }
 
 .nav-item a, nav > a {
-  /* color: #FFF; */
   text-decoration: none;
   padding: 10px 12px;
   transition: .2s ease-in-out;
