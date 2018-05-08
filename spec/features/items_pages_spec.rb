@@ -199,6 +199,30 @@ RSpec.describe 'Items Pages' do
       expect(item.price).to eq(edited_attrs[:price].to_f * 100)
       expect(item.image).to eq(edited_attrs[:image_url])
     end
+
+    it 'they should be able to fill out the fields, click cancel, and return to the specific item\'s page' do
+      visit '/item/1/edit'
+
+      edited_attrs = { title: 'An Edited Item', description: 'This is an edited item', price: '1.99', image_url: 'images/edited_item'}
+
+      within('#edit-item') do
+        select(@merchant1.name, from: 'merchant-menu')
+        fill_in(id: 'edit-title', with: edited_attrs[:title])
+        fill_in(id: 'edit-description', with: edited_attrs[:description])
+        fill_in(id: 'edit-price', with: edited_attrs[:price])
+        fill_in(id: 'edit-image-url', with: edited_attrs[:image_url])
+        click_link(id: 'edit-cancel')
+      end
+
+      item = Item.find(1)
+
+      expect(current_path).to eq('/item/1')
+      expect(item.merchant_id).to eq(1)
+      expect(item.title).to eq(@first_item_attrs[:title])
+      expect(item.description).to eq(@first_item_attrs[:description])
+      expect(item.price).to eq(@first_item_attrs[:price].to_f)
+      expect(item.image).to eq(@first_item_attrs[:image])
+    end
   end
 
 end

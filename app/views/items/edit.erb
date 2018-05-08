@@ -16,6 +16,6 @@
   <input id="edit-price" name="item[price]" value="<%= @item.price %>">
   <label for="edit-image-url">
   <input id="edit-image-url" type="text" name="item[image_url]" value="<%= @item.image %>">
-  <button id="edit-cancel"><a href="/item/<%= @item.id %>">Cancel</a></button>
+  <button><a id='edit-cancel' href="/item/<%= @item.id %>">Cancel</a></button>
   <button id="submit-edit" type="submit">Update Item</button>
 </form>
