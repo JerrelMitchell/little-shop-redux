@@ -139,8 +139,7 @@ RSpec.describe 'Items Pages' do
       new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
 
       within('#new-item') do
-
-        expect(page).to have_content('Title')
+        select('The Coolest Merchant', from: 'merchant-menu')
         fill_in(id: 'item-title', with: new_item_attrs[:title])
         fill_in(id: 'item-description', with: new_item_attrs[:description])
         fill_in(id: 'item-price', with: new_item_attrs[:price])
@@ -153,6 +152,24 @@ RSpec.describe 'Items Pages' do
       expect(Item.find(4).description).to eq(new_item_attrs[:description])
       expect(Item.find(4).price).to eq(new_item_attrs[:price].to_f * 100)
       expect(Item.find(4).image).to eq(new_item_attrs[:image_url])
+      expect(Item.find(4).merchant_id).to eq(1)
     end
+  end
+
+  it 'they should be able to cancel after filling in fields without creating an item' do
+    visit '/items/new'
+    new_item_attrs = { title: 'A New Item', description: 'A new item\'s description', price: '7.99', image_url: 'images/a_new_image' }
+
+    within('#new-item') do
+      select('The Coolest Merchant', from: 'merchant-menu')
+      fill_in(id: 'item-title', with: new_item_attrs[:title])
+      fill_in(id: 'item-description', with: new_item_attrs[:description])
+      fill_in(id: 'item-price', with: new_item_attrs[:price])
+      fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
+      click_link('Cancel')
+    end
+
+    expect(Item.all.length).to eq(3)
+    expect(current_path).to eq('/items')
   end
 end
