@@ -182,11 +182,11 @@ RSpec.describe 'Items Pages' do
       edited_attrs = { title: 'An Edited Item', description: 'This is an edited item', price: '1.99', image_url: 'images/edited_item'}
 
       within('#edit-item') do
-        select('The Coolest Merchant', from: 'merchant-menu')
-        fill_in(id: 'edit-title', with: 'An Edited Item')
-        fill_in(id: 'edit-description', with: 'This is an edited item')
-        fill_in(id: 'edit-price', with: '1.99')
-        fill_in(id: 'edit-image-url', with: 'images/edited')
+        select(@merchant1.name, from: 'merchant-menu')
+        fill_in(id: 'edit-title', with: edited_attrs[:title])
+        fill_in(id: 'edit-description', with: edited_attrs[:description])
+        fill_in(id: 'edit-price', with: edited_attrs[:price])
+        fill_in(id: 'edit-image-url', with: edited_attrs[:image_url])
         click_button(id: 'submit-edit')
       end
 

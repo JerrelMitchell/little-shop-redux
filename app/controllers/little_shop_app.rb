@@ -52,12 +52,17 @@ class LittleShopApp < Sinatra::Base
 
   get '/item/:id/edit' do
     @item = Item.find(params[:id])
+    @merchant_names = Merchant.all.map(&:name)
     erb :"items/edit"
   end
 
   post '/items' do
     Item.add_item(params[:item])
     redirect '/items'
+  end
+
+  put '/item/:id' do
+    Item.find(params[:id]).update_item(params[:item])
   end
 
   # Merchant Paths
