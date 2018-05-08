@@ -83,6 +83,51 @@ RSpec.describe Item do
         expect(item.image).to eq(params[:item][:image]) 
       end
     end
+
+    describe '.count' do
+      it 'should return the total number of items' do
+        Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '800_000', image: '/imgs/shirt')
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes')
+
+        expect(Item.count).to eq(2)
+      end
+    end
+
+    describe '.average' do
+      it 'should return the average of prices as a float' do
+        Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '200', image: '/imgs/shirt')
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400', image: '/imgs/shoes')
+
+        expect(Item.average(:price)).to eq(300.0)
+      end
+    end
+
+    describe '.average_item_price' do
+      it 'should return the average item price as a float and divided by 100 for currency format' do
+        Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '200', image: '/imgs/shirt')
+        Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400', image: '/imgs/shoes')
+
+        expect(Item.average_item_price).to eq(3.00)
+      end
+    end
+
+    describe '.order' do
+      it 'should return most recently created item when sort created date in descending order' do
+        item1 = Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '200', image: '/imgs/shirt')
+        item2 = Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400', image: '/imgs/shoes')
+
+        expect(Item.order("created_at DESC").limit(1).first).to eq(item2)
+        expect(Item.order("created_at DESC").limit(1).first).to_not eq(item1)
+      end
+
+      it 'should return the oldest item when ordering by created date, ascending' do
+        item1 = Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '200', image: '/imgs/shirt')
+        item2 = Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400', image: '/imgs/shoes')
+
+        expect(Item.order("created_at ASC").limit(1).first).to eq(item1)
+        expect(Item.order("created_at ASC").limit(1).first).to_not eq(item2)
+      end
+    end
   end
 
   describe 'Instance Methods' do

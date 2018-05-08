@@ -34,6 +34,10 @@ class Item < ActiveRecord::Base
     create(attrs)
   end
 
+  def self.average_item_price
+    average(:price) / 100
+  end
+
   def update_item(form_data)
     attrs = {
       merchant_id: Merchant.find_by(name: form_data[:merchant]).id,
