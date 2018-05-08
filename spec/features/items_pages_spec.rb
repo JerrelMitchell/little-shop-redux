@@ -2,20 +2,20 @@ RSpec.describe 'Items Pages' do
   before(:each) do
     @item_1_attributes = { id: 1, title: 'The First Cool Item',
                            description: 'It\'s alright',
-                           price: 357, image: 'imgs/img1' }
+                           price: 357, image: 'imgs/img1', merchant_id: 1 }
     @item_2_attributes = { id: 2, title: 'The Second Cool Item',
                            description: 'It\'s cool',
-                           price: 1000, image: 'imgs/img2' }
+                           price: 1000, image: 'imgs/img2', merchant_id: 2 }
     @item_3_attributes = { id: 3, title: 'The Third Cool Item',
                            description: 'It\'s the coolest',
-                           price: 900, image: 'imgs/img3' }
+                           price: 900, image: 'imgs/img3', merchant_id: 2 }
     Item.create(@item_1_attributes)
     Item.create(@item_2_attributes)
     Item.create(@item_3_attributes)
     @merchant1 = Merchant.create(id: 1, name: 'The Coolest Merchant', item_id: 1)
     @merchant2 = Merchant.create(id: 2, name: 'The Sort of Cool Merchant', item_id: 2)
-    Item.find(1).update(merchant_id: 1)
-    Item.find(2).update(merchant_id: 2)
+    # Item.find(1).update(merchant_id: 1)
+    # Item.find(2).update(merchant_id: 2)
   end
 
   describe 'a typical user visits the items page' do
@@ -34,23 +34,7 @@ RSpec.describe 'Items Pages' do
         expect(page).to have_content(@item_3_attributes[:title])
       end
     end
-
-    it 'they should see an index page with all items\' descriptions listed' do
-      visit '/items'
-
-      within('#item-1') do
-        expect(page).to have_content(@item_1_attributes[:description])
-      end
-
-      within('#item-2') do
-        expect(page).to have_content(@item_2_attributes[:description])
-      end
-
-      within('#item-3') do
-        expect(page).to have_content(@item_3_attributes[:description])
-      end
-    end
-
+    
     it 'they should see an index page with all items\' prices listed' do
       visit '/items'
 
