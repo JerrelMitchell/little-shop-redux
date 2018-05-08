@@ -72,6 +72,7 @@ class LittleShopApp < Sinatra::Base
 
   get '/items-dashboard' do
     @items_average = Item.average_item_price
+    @total_items = Item.count
     erb :"items/dashboard"
   end
 

@@ -34,12 +34,12 @@ RSpec.describe 'Items Dashboard' do
     it 'should display the correct average information on the page' do
       visit '/items-dashboard'
 
-      average = 7.52
+      total = 3
       section_title = 'Total Item Count'
 
       within('#total-item-count') do
         expect(page).to have_content(section_title)
-        expect(page).to have_content(average)
+        expect(page).to have_content(total)
       end
     end
   end
