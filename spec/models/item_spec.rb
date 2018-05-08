@@ -3,11 +3,13 @@ RSpec.describe Item do
     it 'is invalid without a title' do
       item = Item.new(id: '1234567', description: 'really cool shoes', price: '400_000', image: '/imgs/shoes', merchant_id: 1)
 
+
       expect(item).to_not be_valid
     end
 
     it 'is invalid without description' do
       item = Item.new(id: 1234567, title: 'Shoes', price: '400_000', image: '/imgs/shoes', merchant_id: 1)
+
 
       expect(item).to_not be_valid
     end
@@ -88,7 +90,6 @@ RSpec.describe Item do
 
     describe '.count' do
       it 'should return the total number of items' do
-
         expect(Item.count).to eq(2)
       end
     end
