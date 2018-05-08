@@ -5,7 +5,7 @@
   <ul id="item-<%= item.id %>">
     <li><img class="item-image" src="<%= item.image %>" /></li>
     <li><%= item.title %></li>
-    <li><%= item.price %></li>
+    <li>$<%= item.price %></li>
   </ul>
   <form id='delete-item-<%= item.id %>' action='/item/<%= item.id %>' method='POST'>
     <input type='hidden' name='_method' value='DELETE'/>
