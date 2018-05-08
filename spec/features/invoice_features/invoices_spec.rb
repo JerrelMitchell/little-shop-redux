@@ -1,4 +1,12 @@
 RSpec.describe 'Visitors' do
+   before(:each) do
+      @invoice1 = Invoice.create(merchant_id: 12334111, status: 'pending')
+      @invoice2 = Invoice.create(merchant_id: 12334112, status: 'shipped')
+      @invoice3 = Invoice.create(merchant_id: 12334113, status: 'returned')
+      @merchant1 = Merchant.create(id: 12334111, name: 'Ye Olde Shoppe')
+      @merchant2 = Merchant.create(id: 12334112, name: 'Example Shop')
+    end
+
   context 'when visiting /invoices' do
     it 'should see a list of invoices' do
       status1 = 'pending'
@@ -22,46 +30,57 @@ RSpec.describe 'Visitors' do
 
   context 'when visiting /invoices/:id' do
     it 'should display the invoice corresponding to :id' do
-      status = 'pending'
-      merchant_id = 12334135
-      Invoice.create(merchant_id: merchant_id, status: status)
+      visit('/invoices/1')
+      
+      expect(status_code).to eq(200)
+      expect(page).to have_content(@invoice1.status)
+      expect(page).to have_content(@invoice1.merchant_id)
+    end
 
+    it 'should display the merchant name' do
+      content = "merchant: #{@invoice1.merchant.name}"
+      # require 'pry';binding.pry
       visit('/invoices/1')
 
-      expect(status_code).to eq(200)
-      expect(page).to have_content(status)
-      expect(page).to have_content(merchant_id)
+      expect(page).to have_content(content)
     end
   end
 
   context 'when visiting /invoices/:id/edit' do
+    
     it 'should display current status ' do
-      merchant_id = 12334105
-      status = 'pending'
-      invoice = Invoice.create(merchant_id: merchant_id, status: status)
-      content = "Current Status: #{invoice.status}"
+      content = "Current Status: #{@invoice1.status}"
 
       visit('/invoices/1/edit')
 
       expect(page).to have_content(content)
     end
 
-    xit 'should have a form to accept new status' do
-      merchant_id = 12334105
-      status = 'pending'
+    it 'should have a form to accept new status' do
       new_status = 'shipped'
-      invoice = Invoice.create(merchant_id: merchant_id, status: status)
-      content = "Current Status: #{invoice.status}"
+      merchant_id = 12334111
+      content = "Current Status: #{@invoice1.status}"
 
       visit('/invoices/1/edit')
 
-      within('#test') do
-        fill_in 'enter new status', with: new_status
-        click_on("submit")
+      within('#invoice-edit') do
+        fill_in("invoice[status]", with: new_status)
+        click_on('Create Invoice')
       end
+      expect(Invoice.find(1).status).to eq(new_status)
+      expect(Invoice.find(1).merchant_id).to eq(merchant_id)
+    end
 
+    it 'should redirect user to /invoices/:id after editing' do
+      new_status = 'shipped'
+
+      visit('/invoices/1/edit')
+
+      within('#invoice-edit') do
+        fill_in("invoice[status]", with: new_status)
+        click_on('Create Invoice')
+      end
       expect(current_path).to eq('/invoices/1')
-
-      end
+    end
   end
 end

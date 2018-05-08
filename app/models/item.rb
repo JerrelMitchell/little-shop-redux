@@ -7,6 +7,9 @@ class Item < ActiveRecord::Base
   validates :image, presence: true
   validates :merchant_id, presence: true
 
+  has_many :invoice_items
+  has_many :invoices, through: :invoice_items
+
   def self.format_price(unit_price)
     (unit_price.to_f / 100)
   end
