@@ -1,7 +1,7 @@
 <header>
   <h1>Create New Item</h1>
 </header>
-<form id="new-item" action="/items" method="post">
+<form id="new-item" action="/items" method="POST">
   <select id="merchant-menu" name="item[merchant]">
     <% @merchant_names.each do |merchant_name| %>
       <option value="<%= merchant_name %>"><%= merchant_name %></option>

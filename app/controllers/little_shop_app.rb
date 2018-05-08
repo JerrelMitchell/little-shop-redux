@@ -51,9 +51,32 @@ class LittleShopApp < Sinatra::Base
     erb :"items/new"
   end
 
+  get '/item/:id/edit' do
+    @item = Item.find(params[:id])
+    @merchant_names = Merchant.all.map(&:name)
+    erb :"items/edit"
+  end
+
   post '/items' do
     Item.add_item(params[:item])
     redirect '/items'
+  end
+
+  put '/item/:id' do
+    Item.find(params[:id]).update_item(params[:item])
+  end
+
+  delete '/item/:id' do
+    Item.destroy(params[:id].to_i)
+    redirect '/items'
+  end
+
+  get '/items-dashboard' do
+    @items_average_price = Item.average_item_price
+    @total_items = Item.count
+    @newest_item = Item.order("created_at DESC").limit(1).first
+    @oldest_item = Item.order("created_at ASC").limit(1).first
+    erb :"items/dashboard"
   end
 
   # Merchant Paths
@@ -85,8 +108,6 @@ class LittleShopApp < Sinatra::Base
 
   post '/merchants' do
     @merchants = Merchant.all
-    new_id = (@merchants.max_by(&:id).id + 1)
-    params[:merchant][:id] = new_id
     Merchant.create(params[:merchant])
     redirect '/merchants'
   end

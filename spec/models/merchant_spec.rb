@@ -2,7 +2,7 @@ RSpec.describe Merchant do
   describe 'Validations' do
     describe 'validation' do
       it 'is invalid without a name' do
-        merchant = Merchant.create(created_at: Time.now)
+        merchant = Merchant.create({})
 
         expect(merchant).to_not be_valid
       end
@@ -10,8 +10,8 @@ RSpec.describe Merchant do
   end
 
   before(:each) do
-    @merchant1 = Merchant.create(id: 1, name: 'Ye Olde Shoppe')
-    @merchant2 = Merchant.create(id: 2, name: 'Example Shop')
+    @merchant1 = Merchant.create(name: 'Ye Olde Shoppe')
+    @merchant2 = Merchant.create(name: 'Example Shop')
   end
 
   describe 'Merchants have attributes' do
@@ -29,9 +29,14 @@ RSpec.describe Merchant do
   end
 
   describe 'Merchants exhibit CRUD functionality' do
-    describe '.all' do
-      it 'should return all merchants in database' do
-        expect(Merchant.all.size).to eq(2)
+    describe '.create' do
+      it 'should create a new merchant to put in database' do
+        name = "Brand Spankin' New Shop"
+        expect { Merchant.find(3) }.to raise_error(ActiveRecord::RecordNotFound,
+                                                   "Couldn't find Merchant with 'id'=3")
+        merchant3 = Merchant.add_merchant(name: name)
+
+        expect(merchant3.name).to eq(name)
       end
     end
 

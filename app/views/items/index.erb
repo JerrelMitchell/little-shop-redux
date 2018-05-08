@@ -1,15 +1,16 @@
-<!-- <!DOCTYPE html>
-<html>
-<head></head>
-<body> -->
-<h1>Items</h1>
+<header>
+  <a href="/items-dashboard">Dashboard</a>
+  <h1>Items</h1>
+  <button id="create-new-item"><a href="/items/new">Create New Item</a></button>
+</header>
 <% @all_items.each do |item| %>
   <ul id="item-<%= item.id %>">
+    <li><img class="item-image" src="<%= item.image %>" /></li>
     <li><%= item.title %></li>
-    <li><%= item.price %></li>
-    <li><%= item.description %></li>
-    <li><img src="<%= item.image %>" /></li>
+    <li>$<%= item.price %></li>
   </ul>
+  <form id='delete-item-<%= item.id %>' action='/item/<%= item.id %>' method='POST'>
+    <input type='hidden' name='_method' value='DELETE'/>
+    <input type='submit' value='Delete'>
+  </form>
 <% end %>
-<!-- </body>
-</html> -->

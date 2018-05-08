@@ -2,4 +2,4 @@ db/csv/*.csv
 Gemfile.lock
 .ruby-version
 tmp/
-
+.DS_Store
