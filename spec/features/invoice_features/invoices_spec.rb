@@ -46,7 +46,7 @@ RSpec.describe 'Visitors' do
       expect(page).to have_content(content)
     end
 
-    xit 'should have a form to accept new status' do
+    it 'should have a form to accept new status' do
       merchant_id = 12334105
       status = 'pending'
       new_status = 'shipped'
@@ -56,11 +56,27 @@ RSpec.describe 'Visitors' do
       visit('/invoices/1/edit')
 
       within('#invoice-edit') do
-        fill_in(:id "invoice-status", with: new_status)
-        click_on(id: 'invoice-submit')
+        fill_in("invoice[status]", with: new_status)
+        click_on('Create Invoice')
       end
+      expect(Invoice.find(1).status).to eq(new_status)
+      expect(Invoice.find(1).merchant_id).to eq(merchant_id)
+    end
 
+    it 'should redirect user to /invoices/:id after editing' do
+      merchant_id = 12334105
+      status = 'pending'
+      new_status = 'shipped'
+      invoice = Invoice.create(merchant_id: merchant_id, status: status)
+
+      visit('/invoices/1/edit')
+
+      within('#invoice-edit') do
+        fill_in("invoice[status]", with: new_status)
+        click_on('Create Invoice')
+      end
       expect(current_path).to eq('/invoices/1')
     end
+
   end
 end
