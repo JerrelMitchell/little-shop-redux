@@ -47,7 +47,7 @@ RSpec.describe 'Visitors' do
   end
 
   context 'when visiting /invoices/:id/edit' do
-    
+
     it 'should display current status ' do
       content = "Current Status: #{@invoice1.status}"
 
