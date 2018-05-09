@@ -14,13 +14,11 @@ class LittleShopApp < Sinatra::Base
   end
 
   get '/invoices/:id/edit' do
-    require'pry';binding.pry
     @invoice = Invoice.find(params['id'])
     erb :"invoices/edit"
   end
 
   delete '/invoices/:id' do
-    require 'pry';binding.pry
     Invoice.destroy(params[:id].to_i)
     redirect '/invoices'
   end
@@ -75,7 +73,6 @@ class LittleShopApp < Sinatra::Base
   end
 
   delete '/item/:id' do
-    require'pry';binding.pry
     Item.destroy(params[:id].to_i)
     redirect '/items'
   end

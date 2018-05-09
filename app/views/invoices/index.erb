@@ -8,7 +8,10 @@
     <ul>
         <li>merchant id: <%= invoice.merchant_id %></li>
         <li>status :<%= invoice.status %></li>
-        <li><a href="/invoices/<%= invoice.id %>/delete">Delete Invoice</a></li>
+        <form action="/invoices/<%= invoice.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="delete"/>
+        </form>
         <li><a href="/invoices/<%= invoice.id %>/edit">Edit Invoice</a></li>
     </ul>
 <% end %>
