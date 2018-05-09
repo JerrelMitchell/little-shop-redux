@@ -73,7 +73,7 @@ RSpec.describe 'Visitors' do
   end
 
   context 'when visiting /merchants-dashboard as an anonymous user' do
-    xit 'should see merchant with most items' do
+    it 'should see merchant with most items' do
       visit('/merchants-dashboard')
 
       expect(page).to have_content('Merchant With Most Items:')
