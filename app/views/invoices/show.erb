@@ -1,19 +1,16 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body> -->
 <h1> Invoice: <%= @invoice.id %> </h1>
     <ul>
-    <li> merchant id: <%= @invoice.merchant_id %></li>
+
+    <li> merchant: <%= @invoice.merchant.name %></li>
     <li> status: <%= @invoice.status %></li>
     <li> status: <%= @invoice.updated_at %></li>
     <li> status: <%= @invoice.created_at %></li>
-    <li><a href="/invoices/<%= @invoice.id %>/edit">Edit Invoice</a></li>
+    <form id='invoice-edit' action='/invoices/<%= @invoice.id %>/edit'>
+            <button type='submit'>Edit</button>
+    </form>
     <form action="/invoices/<%= @invoice.id %>" method="POST">
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" value="delete"/>
     </form>
     </ul>
-  <!-- </body>
-</html> -->
+

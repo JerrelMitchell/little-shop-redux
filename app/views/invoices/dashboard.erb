@@ -1,22 +1,19 @@
-<h1>Invoice Dashboard</h1>
+<div id='container'>
+  <h2>Status Percentages</h2>
+    <ul>
+      <li>Pending:<%= @status_percent["pending"] %>%</li>
+      <li>Shipped:<%= @status_percent["shipped"] %>%</li>
+      <li>Returned:<%= @status_percent["returned"] %>%</li>
+    </ul>
+  <h3>Unit Prices</h3>
+    <ul>
 
-<header id='invoices-index-page'>
-  <a href="/invoices-dashboard">Dashboard</a>
-  <h1>Invoices</h1>
-</header>
-<h2>Status Percentages</h2>
-  <ul>
-    <li><%= @status_percent["pending"] %></li>
-    <li><%= @status_percent["shipped"] %></li>
-    <li><%= @status_percent["returned"] %></li>
-  </ul>
-<h3>Unit Prices</h3>
-  <ul>
-    <li><%= @max_price_invoice %></li>
-    <li><%= @min_price_invoice %></li>
-  </ul>
-<h4>Quantity</h4>
-  <ul>
-    <li><%= @max_quantity_invoice %></li>
-    <li><%= @min_quantity_invoice %></li>
-  </ul>
+      <li>Highet Invoice:<a href='/invoices/<%= @max_price_invoice %>'><%= @max_price_invoice %></a></li>
+      <li>Lowest Invoice:<a href='/invoices/<%= @min_price_invoice %>'><%= @min_price_invoice %></a></li>
+    </ul>
+  <h4>Quantity</h4>
+    <ul>
+      <li>Highest Invoice:<a href='/invoices/<%= @max_quantity_invoice %>'><%= @max_quantity_invoice %></a></li>
+      <li>Lowest Invoice:<a href='/invoices/<%= @min_quantity_invoice %>'><%= @min_quantity_invoice %></a></li>
+    </ul>
+</div>

@@ -4,15 +4,13 @@
 </header>
 <main class='invoices-container'>
 <% @invoices.each do |invoice| %>
-        <ul>
         <p><%= invoice.id %></p>
-        <form id='invoice-edit' action='/invoices/<%= invoice.id %>' method="POST">
+        <form id='invoice-edit' action='/invoices/<%= invoice.id %>/edit'>
             <button type='submit'>Edit</button>
         </form>
         <form action="/invoices/<%= invoice.id %>" method="POST">
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" value="delete"/>
         </form>
-        </ul>
 <% end %>
 </main>

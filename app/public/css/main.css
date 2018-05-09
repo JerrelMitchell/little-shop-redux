@@ -94,44 +94,46 @@ nav > a:hover {
 }
 
 .invoices-container {
-  display: flex;
-  flex-flow: row wrap;
+	display: flex;
+	flex-flow: row wrap;
+  flex-direction: row;
   align-content: center;
   justify-content: space-between;
 }
 
-
-
-.invoices-container a, p, form {
+.invoices-container form {
 	text-decoration: none;
-	padding: 10px 200px;
+	padding: 10px 100px;
+	padding-left: 10px;
 	transition: 0.2s ease-in-out;
 }
 
-.invoices-container ul {
+.invoices-container p {
+	text-decoration: none;
+	padding-right: 400px;
+	padding-left: 80px;
+	transition: 0.2s ease-in-out;
+}
+
+#invoice-edit{
+	padding-right: 5px;
+	padding-left: 0px;
+}
+
+#invoices-dashboard-page {
 	display: flex;
+	flex-direction: row;
 	list-style: none;
-	justify-content: space-between;
-	height: 40px;
-	flex: 0 30px 200px;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
-main, aside, article {
-  margin: 10px;
-  border: solid 1px #000;
-  border-bottom: 0;
-  min-height: 50px; /* min-height instead of height */
+#invoices-dashboard-page h1 {
+	color: red;
+	justify-content: center;
+	text-align: center;
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
 }
-main {
-  display: flex;
-}
-aside {
-  flex: 0 1 200px; /* Positive flex-shrink */
-}
-article {
-  flex: 1 1 auto; /* Positive flex-shrink */
-}
-
-
-
-

@@ -20,18 +20,14 @@ RSpec.describe 'Visitors' do
       merchant_id1 = 12334135
       status2 = 'shipped'
       merchant_id2 = 12334136
-      Invoice.create(merchant_id: merchant_id1, status: status1)
-      Invoice.create(merchant_id: merchant_id2, status: status2)
+      invoice1 = Invoice.create(merchant_id: merchant_id1, status: status1)
+      invoice2 = Invoice.create(merchant_id: merchant_id2, status: status2)
 
       visit('/invoices')
 
       expect(status_code).to eq(200)
-      expect(page).to have_content(status1)
-      expect(page).to have_content(status2)
-      expect(page).to have_content(merchant_id1)
-      expect(page).to have_content(merchant_id2)
-
-
+      expect(page).to have_content(invoice1.id)
+      expect(page).to have_content(invoice2.id)
     end
   end
 
@@ -41,7 +37,6 @@ RSpec.describe 'Visitors' do
       
       expect(status_code).to eq(200)
       expect(page).to have_content(@invoice1.status)
-      expect(page).to have_content(@invoice1.merchant_id)
     end
 
     it 'should display the merchant name' do
@@ -110,7 +105,7 @@ RSpec.describe 'Visitors' do
     it 'should display the highest and lowest priced invoice' do
       max_invoice_price = Invoice.max_invoice_price
       min_invoice_price = Invoice.min_invoice_price
-
+      visit('/invoices-dashboard')
       expect(page).to have_content(max_invoice_price)
       expect(page).to have_content(min_invoice_price)
     end
@@ -118,7 +113,7 @@ RSpec.describe 'Visitors' do
     it 'should display the invoices with the largest and smallest quantity of items' do
       max_invoice_quantity = Invoice.max_invoice_quantity
       min_invoice_quantity = Invoice.min_invoice_quantity
-
+      visit('/invoices-dashboard')
       expect(page).to have_content(max_invoice_quantity)
       expect(page).to have_content(min_invoice_quantity)
     end
