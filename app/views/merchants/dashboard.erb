@@ -5,12 +5,10 @@
   <h2 class="dashboard-heading"></h2>
   <div id="highest-item-count">
     <h3 class='metric-title'>Merchant With Most Items:</h3>
-    <span><a href='/merchants/<%= @merchant_most_items %>'><%= @merchant_most_items %></a></span>
+    <span><a href='/merchants/<%= @merchant_most_items.id %>'><%= @merchant_most_items.name %></a></span>
   </div>
-  <!-- <div id="high-item-price">
-    <h3 class='metric-title'>Merchant With Highest Price Item:</h3>
-    <span><a href='/merchants/<%= # @merchant_highest_priced_item %>'><%= # @merchant_highest_priced_item %></a></span>
-  </div> -->
+  <br>
+  <br>
 </section>
 <% @merchants.each do |merchant| %>
 <main id="merchant-dashboard">
