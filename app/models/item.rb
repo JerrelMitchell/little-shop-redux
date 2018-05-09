@@ -39,7 +39,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.average_item_price
-    average(:price) / 100
+    (average(:price) / 100).round(2)
   end
 
   def update_item(form_data)

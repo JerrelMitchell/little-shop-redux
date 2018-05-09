@@ -64,11 +64,33 @@ RSpec.describe 'Items Pages' do
       visit '/items'
 
       within('header') do
-        click_link('Create New Item')
+        click_button('Create A New Item')
       end
 
       expect(current_path).to eq('/items/new')
       expect(page).to have_content('Create New Item')
+    end
+
+    it 'should take a user to a specific item\'s page when it\'s link is clicked' do
+      visit '/items'
+
+      within('#item-1') do
+        click_link(@item1.title)
+      end
+
+      expect(current_path).to eq('/item/1')
+      expect(page).to have_content(@item1.description)
+    end
+
+    it 'should delete an item when that item\'s delete button is clicked' do
+      visit '/items'
+
+      within('#delete-item-1') do
+        click_button('Delete')
+      end
+
+      expect(current_path).to eq('/items')
+      expect { Item.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -76,7 +98,7 @@ RSpec.describe 'Items Pages' do
     it 'they should see the item\'s title as a heading' do
       visit '/item/1'
 
-      within('.item-metainfo') do
+      within('#item-metainfo') do
         expect(page).to have_content(@first_item_attrs[:title])
       end
     end
@@ -184,7 +206,7 @@ RSpec.describe 'Items Pages' do
         fill_in(id: 'item-description', with: new_item_attrs[:description])
         fill_in(id: 'item-price', with: new_item_attrs[:price])
         fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
-        click_link('Cancel')
+        click_button('Cancel')
       end
 
       expect(Item.all.length).to eq(3)
@@ -215,6 +237,7 @@ RSpec.describe 'Items Pages' do
       expect(item.description).to eq(edited_attrs[:description])
       expect(item.price).to eq(edited_attrs[:price].to_f * 100)
       expect(item.image).to eq(edited_attrs[:image_url])
+      expect(current_path).to eq('/item/1')
     end
 
     it 'they should be able to fill out the fields, click cancel, and return to the specific item\'s page' do
@@ -228,7 +251,7 @@ RSpec.describe 'Items Pages' do
         fill_in(id: 'edit-description', with: edited_attrs[:description])
         fill_in(id: 'edit-price', with: edited_attrs[:price])
         fill_in(id: 'edit-image-url', with: edited_attrs[:image_url])
-        click_link(id: 'edit-cancel')
+        click_button(id: 'edit-cancel')
       end
 
       item = Item.find(1)
