@@ -76,8 +76,8 @@ RSpec.describe 'Visitors' do
     xit 'should see merchant with most items' do
       visit('/merchants-dashboard')
 
-      expect(page).to have_content('Merchant with Most Items')
-      expect(page).to have_content(@merchant2)
+      expect(page).to have_content('Merchant With Most Items:')
+      expect(page).to have_content(@merchant1.name)
     end
   end
 
@@ -86,7 +86,7 @@ RSpec.describe 'Visitors' do
       visit('/merchants-dashboard')
 
       expect(page).to have_content('Merchant with Highest Item Price')
-      expect(page).to have_content(@merchant2)
+      expect(page).to have_content(@merchant2.name)
     end
   end
 end
