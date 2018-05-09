@@ -206,7 +206,7 @@ RSpec.describe 'Items Pages' do
         fill_in(id: 'item-description', with: new_item_attrs[:description])
         fill_in(id: 'item-price', with: new_item_attrs[:price])
         fill_in(id: 'item-image-url', with: new_item_attrs[:image_url])
-        click_link('Cancel')
+        click_button('Cancel')
       end
 
       expect(Item.all.length).to eq(3)
