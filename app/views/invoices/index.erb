@@ -1,9 +1,8 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body> -->
-<h1>Invoice Index</h1>
+<header id='invoices-index-page'>
+  <a href="/invoices-dashboard">Dashboard</a>
+  <h1>Invoices</h1>
+</header>
+<main id='invoices-container'>
 <% @invoices.each do |invoice| %>
     <ul>
         <li>merchant id: <%= invoice.merchant_id %></li>
@@ -15,5 +14,4 @@
         <li><a href="/invoices/<%= invoice.id %>/edit">Edit Invoice</a></li>
     </ul>
 <% end %>
-<!-- </body>
-</html> -->
+</main>
