@@ -5,6 +5,13 @@ RSpec.describe 'Visitors' do
       @invoice3 = Invoice.create(merchant_id: 12334113, status: 'returned')
       @merchant1 = Merchant.create(id: 12334111, name: 'Ye Olde Shoppe')
       @merchant2 = Merchant.create(id: 12334112, name: 'Example Shop')
+      @item1 = Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '800', image: '/imgs/shirt', merchant_id: 1)
+      @item2 = Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400', image: '/imgs/shoes', merchant_id: 1)
+      @item3 = Item.create(id: 1234565, title: 'Watch', description: 'really cool shoes', price: '400', image: '/imgs/shoes', merchant_id: 1)
+      InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice1.id, quantity: 2, unit_price: '1600')
+      InvoiceItem.create(item_id: @item2.id, invoice_id: @invoice1.id, quantity: 5, unit_price: '2000')
+      InvoiceItem.create(item_id: @item3.id, invoice_id: @invoice1.id, quantity: 5, unit_price: '2000')
+      InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice2.id, quantity: 5, unit_price: '4000')
     end
 
   context 'when visiting /invoices' do
@@ -13,18 +20,14 @@ RSpec.describe 'Visitors' do
       merchant_id1 = 12334135
       status2 = 'shipped'
       merchant_id2 = 12334136
-      Invoice.create(merchant_id: merchant_id1, status: status1)
-      Invoice.create(merchant_id: merchant_id2, status: status2)
+      invoice1 = Invoice.create(merchant_id: merchant_id1, status: status1)
+      invoice2 = Invoice.create(merchant_id: merchant_id2, status: status2)
 
       visit('/invoices')
 
       expect(status_code).to eq(200)
-      expect(page).to have_content(status1)
-      expect(page).to have_content(status2)
-      expect(page).to have_content(merchant_id1)
-      expect(page).to have_content(merchant_id2)
-
-
+      expect(page).to have_content(invoice1.id)
+      expect(page).to have_content(invoice2.id)
     end
   end
 
@@ -34,7 +37,6 @@ RSpec.describe 'Visitors' do
 
       expect(status_code).to eq(200)
       expect(page).to have_content(@invoice1.status)
-      expect(page).to have_content(@invoice1.merchant_id)
     end
 
     xit 'should display the merchant name' do
@@ -90,9 +92,30 @@ RSpec.describe 'Visitors' do
 
   context 'when a user visits /invoices-dashboard' do
     it 'should dispaly the status percentage' do
-      status_percentages = Invoice.group_and_count
+      status_percent = Invoice.status_percentages
+      pending = "#{status_percent["pending"]}"
+      shipped = "#{status_percent["shipped"]}"
+      returned = "#{status_percent["returned"]}"
+      visit('/invoices-dashboard')
+      expect(page).to have_content(pending)
+      expect(page).to have_content(shipped)
+      expect(page).to have_content(returned)
+    end
 
-      expect(page).to have_content(status_percentages)
+    it 'should display the highest and lowest priced invoice' do
+      max_invoice_price = Invoice.max_invoice_price
+      min_invoice_price = Invoice.min_invoice_price
+      visit('/invoices-dashboard')
+      expect(page).to have_content(max_invoice_price)
+      expect(page).to have_content(min_invoice_price)
+    end
+
+    it 'should display the invoices with the largest and smallest quantity of items' do
+      max_invoice_quantity = Invoice.max_invoice_quantity
+      min_invoice_quantity = Invoice.min_invoice_quantity
+      visit('/invoices-dashboard')
+      expect(page).to have_content(max_invoice_quantity)
+      expect(page).to have_content(min_invoice_quantity)
     end
   end
 end
