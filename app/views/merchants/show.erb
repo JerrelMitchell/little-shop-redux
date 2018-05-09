@@ -1,12 +1,11 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body> -->
-    <h1>Merchant Name: <%= @merchant.name %></h1>
-    <ul>
-      <li><a href="/merchants/<%= @merchant.id %>/edit">Edit</a></li>
-      <li><a href="/merchants/<%= @merchant.id %>/delete">Delete</a></li>
-    </ul>
-  <!-- </body>
-</html> -->
+<h1>Merchant Name: <%= @merchant.name %></h1>
+<ul>
+  <form action="/merchants/<%=@merchant.id%>/edit" method="GET">
+    <input type="hidden" name="_method" value="EDIT">
+    <input type="submit" value="Edit">
+  </form>
+  <form action="/merchants/<%=@merchant.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+  </form>
+</ul>
