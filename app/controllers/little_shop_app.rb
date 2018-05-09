@@ -36,7 +36,7 @@ class LittleShopApp < Sinatra::Base
     @min_price_invoice = Invoice.min_invoice_price
     @max_quantity_invoice = Invoice.max_invoice_quantity
     @min_quantity_invoice = Invoice.min_invoice_quantity
-    erb :invoices/dashboard
+    erb :'invoices/dashboard'
   end
 
   # Item Paths

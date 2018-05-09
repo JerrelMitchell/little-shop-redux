@@ -98,8 +98,13 @@ RSpec.describe 'Visitors' do
   context 'when a user visits /invoices-dashboard' do
     it 'should dispaly the status percentage' do
       status_percent = Invoice.status_percentages
-
-      expect(page).to have_content(status_percent)
+      pending = "#{status_percent["pending"]}"
+      shipped = "#{status_percent["shipped"]}"
+      returned = "#{status_percent["returned"]}"
+      visit('/invoices-dashboard')
+      expect(page).to have_content(pending)
+      expect(page).to have_content(shipped)
+      expect(page).to have_content(returned)
     end
 
     it 'should display the highest and lowest priced invoice' do
