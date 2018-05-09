@@ -1,19 +1,28 @@
-<div id='container'>
+<header id='invoice-dashboard-header'>
+<h1> Invoices Dashboard </h1>
+</header>
+<div id='invoices-dashboard-page'>
+  <div class='invoice-info'>
   <h2>Status Percentages</h2>
     <ul>
       <li>Pending:<%= @status_percent["pending"] %>%</li>
       <li>Shipped:<%= @status_percent["shipped"] %>%</li>
       <li>Returned:<%= @status_percent["returned"] %>%</li>
     </ul>
-  <h3>Unit Prices</h3>
+  </div>
+  <div class='invoice-info'>
+  <h2>Unit Prices</h2>
     <ul>
 
-      <li>Highet Invoice:<a href='/invoices/<%= @max_price_invoice %>'><%= @max_price_invoice %></a></li>
+      <li>Highest Invoice:<a href='/invoices/<%= @max_price_invoice %>'><%= @max_price_invoice %></a></li>
       <li>Lowest Invoice:<a href='/invoices/<%= @min_price_invoice %>'><%= @min_price_invoice %></a></li>
     </ul>
-  <h4>Quantity</h4>
+  </div>
+  <div class='invoice-info'>
+  <h2>Quantity</h2>
     <ul>
       <li>Highest Invoice:<a href='/invoices/<%= @max_quantity_invoice %>'><%= @max_quantity_invoice %></a></li>
       <li>Lowest Invoice:<a href='/invoices/<%= @min_quantity_invoice %>'><%= @min_quantity_invoice %></a></li>
     </ul>
+  </div>
 </div>

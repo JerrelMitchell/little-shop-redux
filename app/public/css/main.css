@@ -123,17 +123,22 @@ nav > a:hover {
 #invoices-dashboard-page {
 	display: flex;
 	flex-direction: row;
-	list-style: none;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
+	/* justify-content: center; aligns row items */
 }
 
-#invoices-dashboard-page h1 {
-	color: red;
-	justify-content: center;
-	text-align: center;
-	text-decoration: none;
-	padding: 10px 12px;
-	transition: 0.2s ease-in-out;
+  #invoice-dashboard-header h1 {
+	width: 300px;
+	margin: 0 auto; /* first number is the top and bottom margin, and next is right left */
 }
+
+	.invoice-info{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		/* align-items: center; aligns column items */
+	}
+
+	.invoice-info ul {
+		list-style: none;
+	}
