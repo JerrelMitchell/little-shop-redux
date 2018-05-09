@@ -415,3 +415,72 @@ span.price {
   width: 320px;
 }
 
+#invoices-index-page {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 55%;
+}
+
+#invoices-index-page a {
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
+	margin: 15px;
+}
+
+#invoices-index-page h1 {
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
+}
+
+.invoices-container {
+	display: flex;
+	flex-flow: row wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.invoices-container form {
+	text-decoration: none;
+	padding: 10px 100px;
+	padding-left: 10px;
+	transition: 0.2s ease-in-out;
+}
+
+.invoices-container p {
+	text-decoration: none;
+	padding-right: 400px;
+	padding-left: 80px;
+	transition: 0.2s ease-in-out;
+}
+
+#invoice-edit{
+	padding-right: 5px;
+	padding-left: 0px;
+}
+
+#invoices-dashboard-page {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	/* justify-content: center; aligns row items */
+}
+
+  #invoice-dashboard-header h1 {
+	width: 300px;
+	margin: 0 auto; /* first number is the top and bottom margin, and next is right left */
+}
+
+	.invoice-info{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		/* align-items: center; aligns column items */
+	}
+
+	.invoice-info ul {
+		list-style: none;
+	}
