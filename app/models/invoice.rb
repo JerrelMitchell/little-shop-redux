@@ -4,15 +4,4 @@ class Invoice < ActiveRecord::Base
     belongs_to :merchant
     has_many(:invoice_items)
     has_many(:items, through: :invoice_items)
-
-    def self.group_and_count
-        grouped_by_status = Invoice.all.group(:status).count
-        total = grouped_by_status.values.inject { |a, b| a + b }
-        new_hash = {}
-        grouped_by_status.each do |key, value|
-            new_hash[key] = (((value.to_f * 100) / (total.to_f * 100)) * 100).to_i
-        end
-        return new_hash 
-        #returns hash: {"returned"=>33, "pending"=>33, "shipped"=>33}
-    end
 end
