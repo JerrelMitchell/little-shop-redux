@@ -18,11 +18,9 @@ class LittleShopApp < Sinatra::Base
     erb :"invoices/edit"
   end
 
-  delete '/invoices/:id/delete' do
-    invoice = Invoice.find(params['id'])
-
-    Invoice.delete(invoice)
-
+  delete '/invoices/:id' do
+    require 'pry';binding.pry
+    Invoice.destroy(params[:id])
     redirect '/invoices'
   end
 

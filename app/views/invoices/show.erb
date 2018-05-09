@@ -10,8 +10,8 @@
     <li> status: <%= @invoice.updated_at %></li>
     <li> status: <%= @invoice.created_at %></li>
     <li><a href="/invoices/<%= @invoice.id %>/edit">Edit Invoice</a></li>
-    <form id='delete-invoice-<%= @invoice.id %>' action='/invoice/<%= @invoice.id %>' method='POST'>
-      <input type='hidden' name='_method' value='DELETE'/>
+    <form  action='/invoice/<%= @invoice.id %>' method='POST'>
+      <input type='hidden' name='_method' value='DELETE'>
       <input type='submit' value='Delete'>
     </form>
     </ul>
