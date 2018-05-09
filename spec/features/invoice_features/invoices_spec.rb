@@ -97,17 +97,21 @@ RSpec.describe 'Visitors' do
 
   context 'when a user visits /invoices-dashboard' do
     it 'should dispaly the status percentage' do
-      status_percentages = Invoice.group_and_count
+      status_percent = Invoice.status_percentages
 
-      expect(page).to have_content(status_percentages)
+      expect(page).to have_content(status_percent)
     end
 
     it 'should display the highest and lowest priced invoice' do
-      max_invoice = Invoice.max_invoice
-      min_invoice = Invoice.min_invoice
+      max_invoice_price = Invoice.max_invoice_price
+      min_invoice_price = Invoice.min_invoice_price
 
-      expect(page).to have_content(max_invoice)
-      expect(page).to have_content(min_invoice)
+      expect(page).to have_content(max_invoice_price)
+      expect(page).to have_content(min_invoice_price)
+    end
+
+    it 'should display the invoices with the largest and smallest quantity of items' do
+      max_invoice_quantity = Invoice.max_invoice_quantity
     end
   end
 end
