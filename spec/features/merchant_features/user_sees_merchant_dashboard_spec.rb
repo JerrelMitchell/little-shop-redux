@@ -73,7 +73,7 @@ RSpec.describe 'Visitors' do
   end
 
   context 'when visiting /merchants-dashboard as an anonymous user' do
-    it 'should see merchant with most items' do
+    xit 'should see merchant with most items' do
       visit('/merchants-dashboard')
 
       expect(page).to have_content('Merchant with Most Items')
@@ -82,7 +82,7 @@ RSpec.describe 'Visitors' do
   end
 
   context 'when visiting /merchants-dashboard as an anonymous user' do
-    it 'should see merchant with highest item price' do
+    xit 'should see merchant with highest item price' do
       visit('/merchants-dashboard')
 
       expect(page).to have_content('Merchant with Highest Item Price')
