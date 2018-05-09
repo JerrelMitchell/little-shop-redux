@@ -93,9 +93,26 @@ nav > a:hover {
 	transition: 0.2s ease-in-out;
 }
 
-#invoices-container {
+.invoices-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
 }
+
+.invoices-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#invoice-container a, p, form {
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
+}
+
+
+
+
