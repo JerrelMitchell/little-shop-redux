@@ -64,11 +64,33 @@ RSpec.describe 'Items Pages' do
       visit '/items'
 
       within('header') do
-        click_link('Create New Item')
+        click_button('Create A New Item')
       end
 
       expect(current_path).to eq('/items/new')
       expect(page).to have_content('Create New Item')
+    end
+
+    it 'should take a user to a specific item\'s page when it\'s link is clicked' do
+      visit '/items'
+
+      within('#item-1') do
+        click_link(@item1.title)
+      end
+
+      expect(current_path).to eq('/item/1')
+      expect(page).to have_content(@item1.description)
+    end
+
+    it 'should delete an item when that item\'s delete button is clicked' do
+      visit '/items'
+
+      within('#delete-item-1') do
+        click_button('Delete')
+      end
+
+      expect(current_path).to eq('/items')
+      expect { Item.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
