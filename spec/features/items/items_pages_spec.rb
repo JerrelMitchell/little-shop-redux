@@ -98,7 +98,7 @@ RSpec.describe 'Items Pages' do
     it 'they should see the item\'s title as a heading' do
       visit '/item/1'
 
-      within('.item-metainfo') do
+      within('#item-metainfo') do
         expect(page).to have_content(@first_item_attrs[:title])
       end
     end
