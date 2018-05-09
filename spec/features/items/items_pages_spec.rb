@@ -228,7 +228,7 @@ RSpec.describe 'Items Pages' do
         fill_in(id: 'edit-description', with: edited_attrs[:description])
         fill_in(id: 'edit-price', with: edited_attrs[:price])
         fill_in(id: 'edit-image-url', with: edited_attrs[:image_url])
-        click_link(id: 'edit-cancel')
+        click_button(id: 'edit-cancel')
       end
 
       item = Item.find(1)

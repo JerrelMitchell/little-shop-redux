@@ -120,3 +120,79 @@ main#items-dashboard-container {
   margin-top: 70px;
   height: 300px;
 }
+
+/* Edit Item Page */
+
+header#edit-item-page {
+  height: 150px;
+  background: #BBB;
+  text-align: center;
+}
+
+#edit-item-page h1 {
+  padding-top: 20px;
+}
+
+form#edit-item {
+  max-width: 900px;
+  width: 80%;
+  border: 2px solid #222;
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+#edit-item label {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+#edit-item-button-container {
+  display: flex;
+  width: 25%;
+  min-width: 240px;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+#edit-item select, #edit-item input, #edit-item textarea {
+  margin-bottom: 30px;
+  height: 30px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#edit-item textarea {
+  height: 90px;
+}
+
+#edit-item button {
+  padding: 8px;
+  width: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 2px solid #222;
+}
+
+#edit-cancel {
+  background-color: rgb(255, 80, 110);
+  transition: .2s ease-in-out;
+}
+
+#edit-cancel:hover {
+  cursor: pointer;
+  background-color: rgb(255, 20, 40);
+}
+
+#submit-edit {
+  background-color: rgb(255, 205, 70);
+  transition: .2s ease-in-out;
+}
+
+#submit-edit:hover {
+  cursor: pointer;
+  background-color: rgb(150, 205, 70);
+}
+
+
