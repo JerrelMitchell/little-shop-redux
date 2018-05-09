@@ -6,6 +6,7 @@ class Invoice < ActiveRecord::Base
     has_many(:items, through: :invoice_items)
 
     def self.group_and_count
+        require 'pry'; binding.pry
         grouped_by_status = Invoice.all.group(:status).count
         total = grouped_by_status.values.inject { |a, b| a + b }
         new_hash = {}
