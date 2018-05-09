@@ -43,7 +43,7 @@ body {
 
 nav {
 	display: flex;
-	background-color: #bbb;
+	background-color: #ddd;
 	justify-content: space-between;
 	padding: 0 20px;
 	height: 60px;
@@ -76,4 +76,416 @@ nav > a {
 .nav-item a:hover,
 nav > a:hover {
 	background-color: #aaa;
+}
+
+/* Items Dashboard */
+
+header#items-dashboard {
+	height: 150px;
+	background: #bbb;
+	text-align: center;
+}
+
+#items-dashboard h1 {
+	padding-top: 20px;
+}
+
+main#items-dashboard-container {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+}
+
+.item-metric-container {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid #222;
+	height: 240px;
+	width: 300px;
+	padding: 20px 8px;
+	align-items: center;
+	margin-top: 100px;
+}
+
+.item-metric-container div {
+	width: 90%;
+	margin-top: 30px;
+}
+
+.item-metric-container a {
+	border: none;
+}
+
+.item-metric {
+	font-size: 42px;
+	margin-top: 70px;
+	height: 300px;
+}
+
+/* Edit Item Page */
+
+header#edit-item-page {
+	height: 150px;
+	background: #bbb;
+	text-align: center;
+}
+
+#edit-item-page h1 {
+	padding-top: 20px;
+}
+
+form#edit-item {
+	max-width: 900px;
+	width: 80%;
+	border: 2px solid #222;
+	display: flex;
+	flex-direction: column;
+	margin: 40px auto;
+	padding: 20px;
+}
+
+#edit-item label {
+	font-size: 24px;
+	margin-bottom: 12px;
+}
+
+#edit-item-button-container {
+	display: flex;
+	width: 25%;
+	min-width: 240px;
+	margin: 0 auto;
+	justify-content: space-around;
+}
+
+#edit-item select,
+#edit-item input,
+#edit-item textarea {
+	margin-bottom: 30px;
+	height: 30px;
+	padding: 10px;
+	font-size: 14px;
+}
+
+#edit-item textarea {
+	height: 90px;
+}
+
+#edit-item button {
+	padding: 8px;
+	width: 100px;
+	font-size: 12px;
+	font-weight: 600;
+	border: 2px solid #222;
+}
+
+#edit-cancel {
+	background-color: rgb(255, 80, 110);
+	transition: 0.2s ease-in-out;
+}
+
+#edit-cancel:hover {
+	cursor: pointer;
+	background-color: rgb(255, 20, 40);
+}
+
+#submit-edit {
+	background-color: rgb(255, 205, 70);
+	transition: 0.2s ease-in-out;
+}
+
+#submit-edit:hover {
+	cursor: pointer;
+	background-color: rgb(150, 205, 70);
+}
+
+/* Items Index Page */
+
+header#items-index-page {
+	height: 150px;
+	background: #bbb;
+	text-align: center;
+}
+
+#items-index-page h1 {
+	margin-bottom: 20px;
+}
+
+#items-index-page a {
+	border: none;
+	background-color: #bbb;
+	display: block;
+	text-align: left;
+	padding: 10px 0 0 10px;
+}
+
+button#create-new-item {
+	font-size: 20px;
+	padding: 12px 48px;
+	letter-spacing: 1px;
+}
+
+#items-container {
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.item-information-container {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.item-information-container a {
+	border: none;
+}
+
+.item-information-container ul {
+	list-style: none;
+}
+
+.item-information-container ul li:nth-child(2) {
+	height: 20px;
+	overflow-x: auto;
+}
+
+.item-image {
+	width: 260px;
+}
+
+/* New Item Page */
+
+header#new-item-page {
+	height: 150px;
+	background: #bbb;
+	text-align: center;
+}
+
+#new-item-page h1 {
+	padding-top: 20px;
+}
+
+form#new-item {
+	max-width: 900px;
+	width: 80%;
+	border: 2px solid #222;
+	display: flex;
+	flex-direction: column;
+	margin: 40px auto;
+	padding: 20px;
+}
+
+#new-item label {
+	font-size: 24px;
+	margin-bottom: 12px;
+}
+
+#new-item button {
+	padding: 8px;
+	width: 100px;
+	font-size: 12px;
+	font-weight: 600;
+	border: 2px solid #222;
+}
+
+#new-item-button-container {
+	display: flex;
+	width: 25%;
+	min-width: 240px;
+	margin: 0 auto;
+	justify-content: space-around;
+}
+
+#new-item select,
+#new-item input,
+#new-item textarea {
+	margin-bottom: 30px;
+	height: 30px;
+	padding: 10px;
+	font-size: 14px;
+}
+
+#new-item textarea {
+	height: 90px;
+}
+
+#new-item-cancel {
+	background-color: rgb(255, 80, 110);
+	transition: 0.2s ease-in-out;
+}
+
+#new-item-cancel:hover {
+	cursor: pointer;
+	background-color: rgb(255, 20, 40);
+}
+
+#item-submit {
+	background-color: rgb(255, 205, 70);
+	transition: 0.2s ease-in-out;
+}
+
+#item-submit:hover {
+	cursor: pointer;
+	background-color: rgb(150, 205, 70);
+}
+
+/* Item Show Page */
+
+header#item-metainfo {
+	height: 150px;
+	background: #bbb;
+	text-align: center;
+}
+
+#item-metainfo h1 {
+	padding-top: 20px;
+}
+
+#item-metainfo button {
+	padding: 8px;
+	width: 100px;
+	font-size: 12px;
+	font-weight: 600;
+	border: 2px solid #222;
+}
+
+#show-page-header-buttons-container {
+	display: flex;
+	width: 25%;
+	min-width: 240px;
+	margin: 0 auto;
+	justify-content: space-around;
+	margin-top: 30px;
+}
+
+#item-metainfo #edit-item {
+	background-color: rgb(255, 205, 70);
+	transition: 0.2s ease-in-out;
+}
+
+#item-metainfo #edit-item:hover {
+	cursor: pointer;
+	background-color: rgb(150, 205, 70);
+}
+
+#item-metainfo #delete-item {
+	background-color: rgb(255, 80, 110);
+	transition: 0.2s ease-in-out;
+}
+
+#item-metainfo #delete-item:hover {
+	cursor: pointer;
+	background-color: rgb(255, 20, 40);
+}
+
+section#show-item-information-container {
+	display: flex;
+	padding: 20px 40px;
+	min-width: 785px;
+	justify-content: center;
+}
+
+section#show-item-information-container div {
+	width: 45%;
+	display: flex;
+	flex-direction: column;
+}
+
+.item-information * {
+	margin-bottom: 20px;
+}
+
+h3.title {
+	font-size: 42px;
+}
+
+span.price {
+	font-size: 32px;
+}
+
+.item-merchant-and-image a {
+	border: none;
+	font-size: 38px;
+	margin-bottom: 12px;
+}
+
+.item-merchant-and-image img {
+	height: 380px;
+	width: 320px;
+}
+
+#invoices-index-page {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 55%;
+}
+
+#invoices-index-page a {
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
+	margin: 15px;
+}
+
+#invoices-index-page h1 {
+	text-decoration: none;
+	padding: 10px 12px;
+	transition: 0.2s ease-in-out;
+}
+
+.invoices-container {
+	display: flex;
+	flex-flow: row wrap;
+	flex-direction: row;
+	align-content: center;
+	justify-content: space-between;
+}
+
+.invoices-container form {
+	text-decoration: none;
+	padding: 10px 100px;
+	padding-left: 10px;
+	transition: 0.2s ease-in-out;
+}
+
+.invoices-container p {
+	text-decoration: none;
+	padding-right: 400px;
+	padding-left: 80px;
+	transition: 0.2s ease-in-out;
+}
+
+#invoice-edit {
+	padding-right: 5px;
+	padding-left: 0px;
+}
+
+#invoices-dashboard-page {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	/* justify-content: center; aligns row items */
+}
+
+#invoice-dashboard-header h1 {
+	width: 300px;
+	margin: 0 auto; /* first number is the top and bottom margin, and next is right left */
+}
+
+.invoice-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* align-items: center; aligns column items */
+}
+
+.invoice-info ul {
+	list-style: none;
 }
