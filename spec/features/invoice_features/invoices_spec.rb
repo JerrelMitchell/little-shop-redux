@@ -39,7 +39,6 @@ RSpec.describe 'Visitors' do
 
     xit 'should display the merchant name' do
       content = "merchant: #{@invoice1.merchant.name}"
-      # require 'pry';binding.pry
       visit('/invoices/1')
 
       expect(page).to have_content(content)

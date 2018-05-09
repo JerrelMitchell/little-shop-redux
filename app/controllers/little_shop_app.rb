@@ -9,7 +9,6 @@ class LittleShopApp < Sinatra::Base
 
   get '/invoices/:id' do
     @invoice = Invoice.find(params['id'])
-    # require 'pry';binding.pry
     erb :"invoices/show"
   end
 
@@ -102,10 +101,8 @@ class LittleShopApp < Sinatra::Base
 
   get '/merchants-dashboard' do
     @merchants = Merchant.all
-    @merchant_total_items = Merchant.total_item_count
-    @merchant_items_average_price = Merchant.average_price
-    @merchant_most_items = Merchant.order("@merchant_total_items DESC").limit(1).first
-    @merchant_highest_priced_item = Merchant.order("@merchants.items.price ASC").limit(1).first
+    # @merchant_most_items = Merchant.order("@merchant_total_items DESC").limit(1).first
+    # @merchant_highest_priced_item = Merchant.order("@merchants.items.price ASC").limit(1).first
     erb :"merchants/dashboard"
   end
 

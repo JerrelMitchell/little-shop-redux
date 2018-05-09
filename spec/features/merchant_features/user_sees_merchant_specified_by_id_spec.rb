@@ -3,8 +3,8 @@ RSpec.describe 'Visitors' do
     it 'should see specific merchant by its id' do
       name1 = 'Ye Newere Shoppe'
       name2 = 'Example Shop'
-      Merchant.create(id: 1, name: name1)
-      Merchant.create(id: 2, name: name2)
+      Merchant.create(name: name1)
+      Merchant.create(name: name2)
 
       visit('/merchants/1')
 
