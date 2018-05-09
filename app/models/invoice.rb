@@ -42,12 +42,10 @@ class Invoice < ActiveRecord::Base
     end
 
     def self.min_invoice_quantity
-        require 'pry';binding.pry
         Invoice.invoice_by_quantity.keys.last #returns the min quantity invoice_id
     end
 
     def self.max_invoice_quantity
-        require 'pry';binding.pry
         Invoice.invoice_by_quantity.keys.first #returns the max quantity invoice_id
     end
 end
