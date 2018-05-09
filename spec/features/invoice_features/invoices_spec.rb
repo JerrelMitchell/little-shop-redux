@@ -46,6 +46,23 @@ RSpec.describe 'Visitors' do
 
       expect(page).to have_content(content)
     end
+
+    it 'should display the item id' do
+      visit('/invoices/1')
+
+      expect(page).to have_content(@item1.id)
+      expect(page).to have_content(@item2.id)
+      expect(page).to have_content(@item3.id)
+    end
+
+    it 'should display the item title' do
+      visit('/invoices/1')
+
+      expect(page).to have_content(@item1.title)
+      expect(page).to have_content(@item2.title)
+      expect(page).to have_content(@item3.title)
+    end
+
   end
 
   context 'when visiting /invoices/:id/edit' do

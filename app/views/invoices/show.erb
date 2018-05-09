@@ -5,11 +5,15 @@
     <li> status: <%= @invoice.updated_at %></li>
     <li> status: <%= @invoice.created_at %></li>
     <form id='invoice-edit' action='/invoices/<%= @invoice.id %>/edit'>
-            <button type='submit'>Edit</button>
+            <button type='submit'>Update Invoice</button>
     </form>
     <form action="/invoices/<%= @invoice.id %>" method="POST">
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" value="delete"/>
     </form>
+    <% @invoice.items.each do |item| %>
+        <p><%= item.id %></p>
+        <p><%= item.title %></p>
+    <% end %>
     </ul>
 
