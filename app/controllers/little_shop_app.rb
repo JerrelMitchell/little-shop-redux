@@ -33,6 +33,11 @@ class LittleShopApp < Sinatra::Base
     redirect "/invoices/#{invoice.id}"
   end
 
+  get '/invoices-dashboard' do
+    @status_percent = Invoice.group_and_count
+    erb :invoices/dashboard
+  end
+
   # Item Paths
 
   get '/items' do
