@@ -1,16 +1,16 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body> -->
-<h1>Invoice Index</h1>
+<header id='invoices-index-page'>
+  <a href="/invoices-dashboard">Dashboard</a>
+  <h1>Invoices</h1>
+</header>
+<main class='invoices-container'>
 <% @invoices.each do |invoice| %>
-    <ul>
-        <li>merchant id: <%= invoice.merchant_id %></li>
-        <li>status :<%= invoice.status %></li>
-        <li><a href="/invoices/<%= invoice.id %>/delete">Delete Invoice</a></li>
-        <li><a href="/invoices/<%= invoice.id %>/edit">Edit Invoice</a></li>
-    </ul>
+        <p><%= invoice.id %></p>
+        <form id='invoice-edit' action='/invoices/<%= invoice.id %>/edit'>
+            <button type='submit'>Edit</button>
+        </form>
+        <form action="/invoices/<%= invoice.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="delete"/>
+        </form>
 <% end %>
-<!-- </body>
-</html> -->
+</main>
