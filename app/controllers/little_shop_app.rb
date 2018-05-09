@@ -18,11 +18,8 @@ class LittleShopApp < Sinatra::Base
     erb :"invoices/edit"
   end
 
-  delete '/invoices/:id/delete' do
-    invoice = Invoice.find(params['id'])
-
-    Invoice.delete(invoice)
-
+  delete '/invoices/:id' do
+    Invoice.destroy(params[:id].to_i)
     redirect '/invoices'
   end
 
@@ -31,6 +28,15 @@ class LittleShopApp < Sinatra::Base
     invoice.update(params['invoice'])
     invoice.save
     redirect "/invoices/#{invoice.id}"
+  end
+
+  get '/invoices-dashboard' do
+    @status_percent = Invoice.status_percentages
+    @max_price_invoice = Invoice.max_invoice_price
+    @min_price_invoice = Invoice.min_invoice_price
+    @max_quantity_invoice = Invoice.max_invoice_quantity
+    @min_quantity_invoice = Invoice.min_invoice_quantity
+    erb :'invoices/dashboard'
   end
 
   # Item Paths
