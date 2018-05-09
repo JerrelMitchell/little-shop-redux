@@ -112,6 +112,10 @@ RSpec.describe 'Visitors' do
 
     it 'should display the invoices with the largest and smallest quantity of items' do
       max_invoice_quantity = Invoice.max_invoice_quantity
+      min_invoice_quantity = Invoice.min_invoice_quantity
+
+      expect(page).to have_content(max_invoice_quantity)
+      expect(page).to have_content(min_invoice_quantity)
     end
   end
 end
