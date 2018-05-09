@@ -1,0 +1,24 @@
+<header>
+  <h1>Merchant Dashboard</h1>
+</header>
+<main id="merchant-dashboard">
+  <section id="merchant-total-items">
+    <h2 class="dashboard-heading">Total Item Count for merchant.name</h2>
+    <h3 class="merchant-item-metric"><%= @merchant_total_items %></h3>
+  </section>
+  <section id="merchant-average-item-price">
+    <h2 class="dashboard-heading">Average Price Per Item for merchant.name</h2>
+    <h3 class="item-metric">$<%= @merchant_items_average_price %></h3>
+  </section>
+  <section id="merchant-highlights">
+    <h2 class="dashboard-heading"></h2>
+    <div id="highest-item-count">
+      <h3 class='metric-title'>Merchant With Most Items</h3>
+      <span>Merchant: <a href='/item/<%= @newest_item.id %>'><%= @merchant_most_items %></a></span>
+    </div>
+    <div id="high-item-price">
+      <h3 class='metric-title'>Merchant With Highest Priced Item</h3>
+      <span>Merchant: <a href='/item/<%= @oldest_item.id %>'><%= @merchant_highest_priced_item %></a></span>
+    </div>
+  </section>
+</main>
