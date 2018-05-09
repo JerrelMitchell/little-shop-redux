@@ -87,4 +87,12 @@ RSpec.describe 'Visitors' do
       expect(current_path).to eq('/invoices/1')
     end
   end
+
+  context 'when a user visits /invoices-dashboard' do
+    it 'should dispaly the status percentage' do
+      status_percentages = Invoice.group_and_count
+
+      expect(page).to have_content(status_percentages)
+    end
+  end
 end
