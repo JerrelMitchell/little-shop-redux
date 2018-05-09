@@ -35,6 +35,8 @@ class LittleShopApp < Sinatra::Base
 
   get '/invoices-dashboard' do
     @status_percent = Invoice.group_and_count
+    @invoice_max = Invoice.max_invoice
+    @invoice_min = Invoice.min_invoice
     erb :invoices/dashboard
   end
 

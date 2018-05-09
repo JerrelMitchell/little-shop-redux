@@ -5,6 +5,13 @@ RSpec.describe 'Visitors' do
       @invoice3 = Invoice.create(merchant_id: 12334113, status: 'returned')
       @merchant1 = Merchant.create(id: 12334111, name: 'Ye Olde Shoppe')
       @merchant2 = Merchant.create(id: 12334112, name: 'Example Shop')
+      @item1 = Item.create(id: 2345678, title: 'A shirt', description: 'a really cool shirt', price: '800', image: '/imgs/shirt', merchant_id: 1)
+      @item2 = Item.create(id: 1234567, title: 'Shoes', description: 'really cool shoes', price: '400', image: '/imgs/shoes', merchant_id: 1)
+      @item3 = Item.create(id: 1234565, title: 'Watch', description: 'really cool shoes', price: '400', image: '/imgs/shoes', merchant_id: 1)
+      InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice1.id, quantity: 2, unit_price: '1600')
+      InvoiceItem.create(item_id: @item2.id, invoice_id: @invoice1.id, quantity: 5, unit_price: '2000')
+      InvoiceItem.create(item_id: @item3.id, invoice_id: @invoice1.id, quantity: 5, unit_price: '2000')
+      InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice2.id, quantity: 5, unit_price: '4000')
     end
 
   context 'when visiting /invoices' do
