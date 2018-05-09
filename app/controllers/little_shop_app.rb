@@ -9,7 +9,6 @@ class LittleShopApp < Sinatra::Base
 
   get '/invoices/:id' do
     @invoice = Invoice.find(params['id'])
-    # require 'pry';binding.pry
     erb :"invoices/show"
   end
 
@@ -64,6 +63,7 @@ class LittleShopApp < Sinatra::Base
 
   put '/item/:id' do
     Item.find(params[:id]).update_item(params[:item])
+    redirect "/item/#{params[:id]}"
   end
 
   delete '/item/:id' do

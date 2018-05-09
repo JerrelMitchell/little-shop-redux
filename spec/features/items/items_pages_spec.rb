@@ -237,6 +237,7 @@ RSpec.describe 'Items Pages' do
       expect(item.description).to eq(edited_attrs[:description])
       expect(item.price).to eq(edited_attrs[:price].to_f * 100)
       expect(item.image).to eq(edited_attrs[:image_url])
+      expect(current_path).to eq('/item/1')
     end
 
     it 'they should be able to fill out the fields, click cancel, and return to the specific item\'s page' do
