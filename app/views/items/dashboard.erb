@@ -1,16 +1,16 @@
-<header>
+<header id="items-dashboard">
   <h1>Items Dashboard</h1>
 </header>
-<main id="items-dashboard">
-  <section id="total-item-count">
+<main id="items-dashboard-container">
+  <section id="total-item-count" class="item-metric-container">
     <h2 class="dashboard-heading">Total Item Count</h2>
     <h3 class="item-metric"><%= @total_items %></h3>
   </section>
-  <section id="average-item-price">
+  <section id="average-item-price" class="item-metric-container">
     <h2 class="dashboard-heading">Average Price Per Item</h2>
     <h3 class="item-metric">$<%= @items_average_price %></h3>
   </section>
-  <section id="items-by-age">
+  <section id="items-by-age" class="item-metric-container">
     <h2 class="dashboard-heading">Item By Age</h2>
     <div id="newest-item">
       <h3 class='metric-title'>Newest</h3>
